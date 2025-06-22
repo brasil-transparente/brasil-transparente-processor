@@ -20,7 +20,6 @@ class NameCorrectorTest {
 
     @Autowired
     private NameCorrector nameCorrector;
-
     @MockBean
     private NameCorrectorLoader nameCorrectorLoader;
 
