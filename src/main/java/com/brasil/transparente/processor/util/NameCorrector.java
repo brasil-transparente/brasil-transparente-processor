@@ -1,18 +1,18 @@
 package com.brasil.transparente.processor.util;
 
 import com.brasil.transparente.processor.entity.*;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Map;
 
 @Slf4j
-@Service
+@Component
+@RequiredArgsConstructor
 public class NameCorrector {
 
-    @Autowired
-    private NameCorrectorLoader nameCorrectorLoader;
+    private final NameCorrectorLoader nameCorrectorLoader;
     private Map<String, String> correctionHashMap;
 
     public void refactorNames(List<Poder> poderList) {

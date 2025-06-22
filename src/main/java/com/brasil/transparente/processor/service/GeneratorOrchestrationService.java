@@ -3,38 +3,38 @@ package com.brasil.transparente.processor.service;
 import com.brasil.transparente.processor.entity.Poder;
 import com.brasil.transparente.processor.entity.UnidadeFederativa;
 import com.brasil.transparente.processor.util.NameCorrector;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@RequiredArgsConstructor
 @Slf4j
 @Service
-public class MainGeneratorService {
+public class GeneratorOrchestrationService {
 
-    @Autowired
-    private ExecutivoGeneratorService executivoGeneratorService;
-    @Autowired
-    private JudiciarioGeneratorService judiciarioGeneratorService;
-    @Autowired
-    private LegislativoGeneratorService legislativoGeneratorService;
-    @Autowired
-    private DespesaSimplificadaGeneratorService despesaSimplificadaGeneratorService;
-    @Autowired
-    private OrgaosAutonomosGeneratorService orgaosAutonomosGeneratorService;
-    @Autowired
-    private GeneralGeneratorService generalGeneratorService;
-    @Autowired
-    private NameCorrector nameCorrector;
-    @Autowired
-    private EstadoGeneratorService estadoGeneratorService;
+    private final ExecutivoGeneratorService executivoGeneratorService;
+    private final JudiciarioGeneratorService judiciarioGeneratorService;
+    private final LegislativoGeneratorService legislativoGeneratorService;
+    private final DespesaSimplificadaGeneratorService despesaSimplificadaGeneratorService;
+    private final OrgaosAutonomosGeneratorService orgaosAutonomosGeneratorService;
+    private final GeneralGeneratorService generalGeneratorService;
+    private final NameCorrector nameCorrector;
+    private final EstadoGeneratorService estadoGeneratorService;
 
     private static final String UNIAO_FEDERAL = "União Federal";
     List<Poder> poderList = new ArrayList<>();
 
     public void generateCompleteReportService(String year) {
+        log.info("[INICIANDO]");
+        generateUniaoReport(year);
+        generateStatesReport(year);
+        log.info("[FINALIZADO]");
+    }
+
+    private void generateUniaoReport(String year) {
         UnidadeFederativa unidadeFederativa = new UnidadeFederativa(UNIAO_FEDERAL);
         poderList.add(executivoGeneratorService.generateExecutiveBranch(year));
         poderList.add(judiciarioGeneratorService.generateJudiciaryBranch(year));
@@ -49,10 +49,12 @@ public class MainGeneratorService {
         generalGeneratorService.saveStructure(unidadeFederativa);
         despesaSimplificadaGeneratorService.generateSimplifiedReportUniao();
         log.info("Finalizado - União");
+    }
+
+    private void generateStatesReport(String year) {
         estadoGeneratorService.generateStateExpensesRS(year, "RS");
         estadoGeneratorService.generateStateExpensesBA(year, "BA");
         log.info("Finalizado - Estados");
-        log.info("[FINALIZADO]");
     }
 
 }

@@ -5,8 +5,8 @@ import com.brasil.transparente.processor.util.constants.Constants;
 import com.brasil.transparente.processor.util.NameCorrector;
 import com.brasil.transparente.processor.util.constants.UnidadesFederativasConstants;
 import com.brasil.transparente.processor.util.constants.estados.RSConstants;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -21,16 +21,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+@RequiredArgsConstructor
 @Slf4j
 @Service
 public class EstadoGeneratorService {
 
-    @Autowired
-    private GeneralGeneratorService generalGeneratorService;
-    @Autowired
-    private NameCorrector nameCorrector;
-    @Autowired
-    private DespesaSimplificadaGeneratorService despesaSimplificadaGeneratorService;
+    private final GeneralGeneratorService generalGeneratorService;
+    private final NameCorrector nameCorrector;
+    private final DespesaSimplificadaGeneratorService despesaSimplificadaGeneratorService;
     @Value("${CSV_PATH}")
     private String csvPath;
 

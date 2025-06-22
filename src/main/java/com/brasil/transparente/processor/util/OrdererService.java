@@ -1,13 +1,11 @@
 package com.brasil.transparente.processor.util;
 
 import com.brasil.transparente.processor.entity.*;
-import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Service
-@NoArgsConstructor
+@Component
 public class OrdererService {
 
     public <T extends Gasto> List<T> orderBySpending(List<T> list) {

@@ -2,7 +2,7 @@ package com.brasil.transparente.processor.util;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
@@ -11,10 +11,10 @@ import java.io.UncheckedIOException;
 import java.util.Map;
 
 @Component
+@RequiredArgsConstructor
 public class NameCorrectorLoader {
 
-    @Autowired
-    private ResourceLoader resourceLoader;
+    private final ResourceLoader resourceLoader;
 
     public Map<String, String> getCorrectionsHashMap() {
         try {

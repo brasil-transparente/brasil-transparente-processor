@@ -4,8 +4,8 @@ import com.brasil.transparente.processor.entity.*;
 import com.brasil.transparente.processor.repository.UnidadeFederativaRepository;
 import com.brasil.transparente.processor.util.constants.Constants;
 import com.brasil.transparente.processor.util.OrdererService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -13,14 +13,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
+@RequiredArgsConstructor
 @Slf4j
 @Service
 public class GeneralGeneratorService {
 
-    @Autowired
-    private OrdererService ordererService;
-    @Autowired
-    private UnidadeFederativaRepository unidadeFederativaRepository;
+    private final OrdererService ordererService;
+    private final UnidadeFederativaRepository unidadeFederativaRepository;
 
     public Ministerio findOrCreateMinisterio(String nameMinisterio, Poder poder) {
         for (Ministerio ministerio : poder.getListMinisterio()) {

@@ -5,26 +5,18 @@ import com.brasil.transparente.processor.entity.ElementoDespesa;
 import com.brasil.transparente.processor.repository.*;
 import com.brasil.transparente.processor.util.constants.SimplifiedConstants;
 import com.brasil.transparente.processor.util.constants.UnidadesFederativasConstants;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class DespesaSimplificadaGeneratorService {
 
-    @Autowired
-    private MinisterioRepository ministerioRepository;
-    @Autowired
-    private OrgaoRepository orgaoRepository;
-    @Autowired
-    private UnidadeGestoraRepository unidadeGestoraRepository;
-    @Autowired
-    private ElementoDespesaRepository elementoDespesaRepository;
-    @Autowired
-    private UnidadeFederativaRepository unidadeFederativaRepository;
-    @Autowired
-    private DespesaSimplificadaRepository despesaSimplificadaRepository;
+    private final ElementoDespesaRepository elementoDespesaRepository;
+    private final UnidadeFederativaRepository unidadeFederativaRepository;
+    private final DespesaSimplificadaRepository despesaSimplificadaRepository;
     private double allMoneySpent;
 
     public void generateSimplifiedReportUniao() {
