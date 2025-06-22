@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "unidade_federativa")
-public class UnidadeFederativa implements Gasto {
+public class UnidadeFederativa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

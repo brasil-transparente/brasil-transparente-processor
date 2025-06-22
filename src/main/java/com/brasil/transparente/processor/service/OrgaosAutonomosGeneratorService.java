@@ -22,7 +22,9 @@ import java.util.Objects;
 @Service
 public class OrgaosAutonomosGeneratorService {
 
-    private final GeneralGeneratorService generalGeneratorService;
+    private final CreatorService creatorService;
+    private final LoggingService loggingService;
+    private final DespesasProcessingService despesasProcessingService;
 
     @Value("${CSV_PATH}")
     private String csvPath;
@@ -47,7 +49,7 @@ public class OrgaosAutonomosGeneratorService {
         generateMinisterioPublico(MINISTERIO_PUBLICO_MILITAR);
         generateMinisterioPublico(MINISTERIO_PUBLICO_DF_TERRITORIOS);
         generateMinisterioPublico(ESCOLA_SUPERIOR_MINISTERIO_PUBLICO_UNIAO);
-        generalGeneratorService.aggregateAllPowerSpending(poder);
+        despesasProcessingService.aggregateAllPowerSpending(poder);
         log.info("Órgãos Autônomos - Finalizado");
         return poder;
     }
@@ -109,21 +111,21 @@ public class OrgaosAutonomosGeneratorService {
                         continue;
                     }
 
-                    Ministerio ministerioReceived = generalGeneratorService.findOrCreateMinisterio(TRIBUNAL_CONTAS_UNIAO, poder);
-                    Orgao orgaoReceived = generalGeneratorService.findOrCreateOrgao(TRIBUNAL_CONTAS_UNIAO, ministerioReceived);
-                    UnidadeGestora unidadeGestoraReceived = generalGeneratorService.findOrCreateUnidadeGestora(unidadeGestora, orgaoReceived);
-                    ElementoDespesa elementoDespesaReceived = generalGeneratorService.findOrCreateNewElementoDespesa(elementoDespesa, unidadeGestoraReceived);
+                    Ministerio ministerioReceived = creatorService.findOrCreateMinisterio(TRIBUNAL_CONTAS_UNIAO, poder);
+                    Orgao orgaoReceived = creatorService.findOrCreateOrgao(TRIBUNAL_CONTAS_UNIAO, ministerioReceived);
+                    UnidadeGestora unidadeGestoraReceived = creatorService.findOrCreateUnidadeGestora(unidadeGestora, orgaoReceived);
+                    ElementoDespesa elementoDespesaReceived = creatorService.findOrCreateNewElementoDespesa(elementoDespesa, unidadeGestoraReceived);
 
-                    generalGeneratorService.updateTotalValueSpent(ministerioReceived, orgaoReceived, unidadeGestoraReceived, elementoDespesaReceived, valorPago);
+                    despesasProcessingService.updateTotalValueSpent(ministerioReceived, orgaoReceived, unidadeGestoraReceived, elementoDespesaReceived, valorPago);
 
                 } else {
-                    generalGeneratorService.logInvalidLine(line);
+                    loggingService.logInvalidLine(line);
                 }
             }
         } catch (IOException e) {
-            generalGeneratorService.logExceptionMainFile(e);
+            loggingService.logExceptionMainFile(e);
         } catch (NumberFormatException e) {
-            generalGeneratorService.logNumberFormatException(e);
+            loggingService.logNumberFormatException(e);
         }
     }
 
@@ -147,21 +149,21 @@ public class OrgaosAutonomosGeneratorService {
                         continue;
                     }
 
-                    Ministerio ministerioReceived = generalGeneratorService.findOrCreateMinisterio(DEFENSORIA_PUBLICA_UNIAO, poder);
-                    Orgao orgaoReceived = generalGeneratorService.findOrCreateOrgao(DEFENSORIA_PUBLICA_UNIAO, ministerioReceived);
-                    UnidadeGestora unidadeGestoraReceived = generalGeneratorService.findOrCreateUnidadeGestora(DEFENSORIA_PUBLICA_UNIAO, orgaoReceived);
-                    ElementoDespesa elementoDespesaReceived = generalGeneratorService.findOrCreateNewElementoDespesa(elementoDespesa, unidadeGestoraReceived);
+                    Ministerio ministerioReceived = creatorService.findOrCreateMinisterio(DEFENSORIA_PUBLICA_UNIAO, poder);
+                    Orgao orgaoReceived = creatorService.findOrCreateOrgao(DEFENSORIA_PUBLICA_UNIAO, ministerioReceived);
+                    UnidadeGestora unidadeGestoraReceived = creatorService.findOrCreateUnidadeGestora(DEFENSORIA_PUBLICA_UNIAO, orgaoReceived);
+                    ElementoDespesa elementoDespesaReceived = creatorService.findOrCreateNewElementoDespesa(elementoDespesa, unidadeGestoraReceived);
 
-                    generalGeneratorService.updateTotalValueSpent(ministerioReceived, orgaoReceived, unidadeGestoraReceived, elementoDespesaReceived, valor);
+                    despesasProcessingService.updateTotalValueSpent(ministerioReceived, orgaoReceived, unidadeGestoraReceived, elementoDespesaReceived, valor);
 
                 } else {
-                    generalGeneratorService.logInvalidLine(line);
+                    loggingService.logInvalidLine(line);
                 }
             }
         } catch (IOException e) {
-            generalGeneratorService.logExceptionMainFile(e);
+            loggingService.logExceptionMainFile(e);
         } catch (NumberFormatException e) {
-            generalGeneratorService.logNumberFormatException(e);
+            loggingService.logNumberFormatException(e);
         }
     }
 
@@ -186,21 +188,21 @@ public class OrgaosAutonomosGeneratorService {
                         continue;
                     }
 
-                    Ministerio ministerioReceived = generalGeneratorService.findOrCreateMinisterio(MINISTERIO_PUBLICO_UNIAO, poder);
-                    Orgao orgaoReceived = generalGeneratorService.findOrCreateOrgao(nameOrgao, ministerioReceived);
-                    UnidadeGestora unidadeGestoraReceived = generalGeneratorService.findOrCreateUnidadeGestora(nameOrgao, orgaoReceived);
-                    ElementoDespesa elementoDespesaReceived = generalGeneratorService.findOrCreateNewElementoDespesa(elementoDespesa, unidadeGestoraReceived);
+                    Ministerio ministerioReceived = creatorService.findOrCreateMinisterio(MINISTERIO_PUBLICO_UNIAO, poder);
+                    Orgao orgaoReceived = creatorService.findOrCreateOrgao(nameOrgao, ministerioReceived);
+                    UnidadeGestora unidadeGestoraReceived = creatorService.findOrCreateUnidadeGestora(nameOrgao, orgaoReceived);
+                    ElementoDespesa elementoDespesaReceived = creatorService.findOrCreateNewElementoDespesa(elementoDespesa, unidadeGestoraReceived);
 
-                    generalGeneratorService.updateTotalValueSpent(ministerioReceived, orgaoReceived, unidadeGestoraReceived, elementoDespesaReceived, valor);
+                    despesasProcessingService.updateTotalValueSpent(ministerioReceived, orgaoReceived, unidadeGestoraReceived, elementoDespesaReceived, valor);
 
                 } else {
-                    generalGeneratorService.logInvalidLine(line);
+                    loggingService.logInvalidLine(line);
                 }
             }
         } catch (IOException e) {
-            generalGeneratorService.logExceptionMainFile(e);
+            loggingService.logExceptionMainFile(e);
         } catch (NumberFormatException e) {
-            generalGeneratorService.logNumberFormatException(e);
+            loggingService.logNumberFormatException(e);
         }
     }
 

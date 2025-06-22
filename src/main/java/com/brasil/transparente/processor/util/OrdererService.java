@@ -8,7 +8,7 @@ import java.util.List;
 @Component
 public class OrdererService {
 
-    public <T extends Gasto> List<T> orderBySpending(List<T> list) {
+    public <T extends UnidadeOrcamentaria> List<T> orderBySpending(List<T> list) {
         list.sort((i1, i2) -> Double.compare(i2.getTotalValueSpent(), i1.getTotalValueSpent()));
         return list;
     }

@@ -11,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "elemento_despesa")
-public class ElementoDespesa implements Gasto {
+public class ElementoDespesa implements UnidadeOrcamentaria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
