@@ -4,10 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.IOException;
@@ -20,9 +20,9 @@ import static org.mockito.Mockito.*;
 @ContextConfiguration(classes = {NameCorrectorLoader.class})
 class NameCorrectorLoaderTest {
 
-    @MockBean
+    @MockitoBean
     private ResourceLoader resourceLoader;
-    @MockBean
+    @MockitoBean
     private Resource resource;
     @Autowired
     private NameCorrectorLoader nameCorrectorLoader;

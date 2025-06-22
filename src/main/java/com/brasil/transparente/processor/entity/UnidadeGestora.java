@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "unidade_gestora")
-public class UnidadeGestora implements Gasto {
+public class UnidadeGestora implements UnidadeOrcamentaria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

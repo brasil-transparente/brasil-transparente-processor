@@ -1,6 +1,7 @@
 package com.brasil.transparente.processor.service;
 
 import com.brasil.transparente.processor.entity.*;
+import com.brasil.transparente.processor.repository.UnidadeFederativaRepository;
 import com.brasil.transparente.processor.util.constants.Constants;
 import com.brasil.transparente.processor.util.NameCorrector;
 import com.brasil.transparente.processor.util.constants.UnidadesFederativasConstants;
@@ -26,9 +27,13 @@ import java.util.Objects;
 @Service
 public class EstadoGeneratorService {
 
-    private final GeneralGeneratorService generalGeneratorService;
+    private final CreatorService creatorService;
+    private final LoggingService loggingService;
     private final NameCorrector nameCorrector;
     private final DespesaSimplificadaGeneratorService despesaSimplificadaGeneratorService;
+    private final UnidadeFederativaRepository unidadeFederativaRepository;
+    private final DespesasProcessingService despesasProcessingService;
+
     @Value("${CSV_PATH}")
     private String csvPath;
 
@@ -55,14 +60,15 @@ public class EstadoGeneratorService {
 
         unidadeFederativa.setListPoder(poderList);
         for (Poder poder : poderList) {
-            generalGeneratorService.aggregateAllPowerSpending(poder);
-            generalGeneratorService.setRelationships(unidadeFederativa);
+            despesasProcessingService.aggregateAllPowerSpending(poder);
+            creatorService.setRelationships(unidadeFederativa);
         }
-        double gastoTotalValue = generalGeneratorService.aggregateTotalExpense(unidadeFederativa);
-        generalGeneratorService.removeNegativeOrZeroExpenses(unidadeFederativa.getListPoder());
-        generalGeneratorService.setTotalPercentages(unidadeFederativa.getListPoder(), gastoTotalValue);
+        double gastoTotalValue = despesasProcessingService.aggregateTotalExpense(unidadeFederativa);
+        despesasProcessingService.removeNegativeOrZeroExpenses(unidadeFederativa.getListPoder());
+        despesasProcessingService.setTotalPercentages(unidadeFederativa.getListPoder(), gastoTotalValue);
         nameCorrector.refactorNames(unidadeFederativa.getListPoder());
-        generalGeneratorService.saveStructure(unidadeFederativa);
+        log.info("Salvando no banco de dados");
+        unidadeFederativaRepository.save(unidadeFederativa);
         despesaSimplificadaGeneratorService.generateSimplifiedReportRS();
         log.info("Rio Grande do Sul - Finalizado");
     }
@@ -84,14 +90,15 @@ public class EstadoGeneratorService {
 
         unidadeFederativa.setListPoder(poderList);
         for (Poder poder : poderList) {
-            generalGeneratorService.aggregateAllPowerSpending(poder);
-            generalGeneratorService.setRelationships(unidadeFederativa);
+            despesasProcessingService.aggregateAllPowerSpending(poder);
+            creatorService.setRelationships(unidadeFederativa);
         }
-        double gastoTotalValue = generalGeneratorService.aggregateTotalExpense(unidadeFederativa);
-        generalGeneratorService.removeNegativeOrZeroExpenses(unidadeFederativa.getListPoder());
-        generalGeneratorService.setTotalPercentages(unidadeFederativa.getListPoder(), gastoTotalValue);
+        double gastoTotalValue = despesasProcessingService.aggregateTotalExpense(unidadeFederativa);
+        despesasProcessingService.removeNegativeOrZeroExpenses(unidadeFederativa.getListPoder());
+        despesasProcessingService.setTotalPercentages(unidadeFederativa.getListPoder(), gastoTotalValue);
         nameCorrector.refactorNames(unidadeFederativa.getListPoder());
-        generalGeneratorService.saveStructure(unidadeFederativa);
+        log.info("Salvando no banco de dados");
+        unidadeFederativaRepository.save(unidadeFederativa);
         despesaSimplificadaGeneratorService.generateSimplifiedReportBA();
         log.info("Bahia - Finalizado");
     }
@@ -129,17 +136,17 @@ public class EstadoGeneratorService {
                 }
 
                 Poder poder = definePoder(poderString, poderList);
-                Ministerio ministerioReceived = generalGeneratorService.findOrCreateMinisterio(ministerio, poder);
-                Orgao orgaoReceived = generalGeneratorService.findOrCreateOrgao(orgao, ministerioReceived);
-                UnidadeGestora unidadeGestoraReceived = generalGeneratorService.findOrCreateUnidadeGestora(unidadeGestora, orgaoReceived);
-                ElementoDespesa elementoDespesaReceived = generalGeneratorService.findOrCreateNewElementoDespesa(elementoDespesa, unidadeGestoraReceived);
+                Ministerio ministerioReceived = creatorService.findOrCreateMinisterio(ministerio, poder);
+                Orgao orgaoReceived = creatorService.findOrCreateOrgao(orgao, ministerioReceived);
+                UnidadeGestora unidadeGestoraReceived = creatorService.findOrCreateUnidadeGestora(unidadeGestora, orgaoReceived);
+                ElementoDespesa elementoDespesaReceived = creatorService.findOrCreateNewElementoDespesa(elementoDespesa, unidadeGestoraReceived);
 
-                generalGeneratorService.updateTotalValueSpent(ministerioReceived, orgaoReceived, unidadeGestoraReceived, elementoDespesaReceived, valor);
+                despesasProcessingService.updateTotalValueSpent(ministerioReceived, orgaoReceived, unidadeGestoraReceived, elementoDespesaReceived, valor);
             }
         } catch (IOException e) {
-            generalGeneratorService.logExceptionMainFile(e);
+            loggingService.logExceptionMainFile(e);
         } catch (NumberFormatException e) {
-            generalGeneratorService.logNumberFormatException(e);
+            loggingService.logNumberFormatException(e);
         }
     }
 
@@ -169,17 +176,17 @@ public class EstadoGeneratorService {
                 }
 
                 Poder poder = definePoder(poderString, poderList);
-                Ministerio ministerioReceived = generalGeneratorService.findOrCreateMinisterio(ministerio, poder);
-                Orgao orgaoReceived = generalGeneratorService.findOrCreateOrgao(orgao, ministerioReceived);
-                UnidadeGestora unidadeGestoraReceived = generalGeneratorService.findOrCreateUnidadeGestora(unidadeGestora, orgaoReceived);
-                ElementoDespesa elementoDespesaReceived = generalGeneratorService.findOrCreateNewElementoDespesa(elementoDespesa, unidadeGestoraReceived);
+                Ministerio ministerioReceived = creatorService.findOrCreateMinisterio(ministerio, poder);
+                Orgao orgaoReceived = creatorService.findOrCreateOrgao(orgao, ministerioReceived);
+                UnidadeGestora unidadeGestoraReceived = creatorService.findOrCreateUnidadeGestora(unidadeGestora, orgaoReceived);
+                ElementoDespesa elementoDespesaReceived = creatorService.findOrCreateNewElementoDespesa(elementoDespesa, unidadeGestoraReceived);
 
-                generalGeneratorService.updateTotalValueSpent(ministerioReceived, orgaoReceived, unidadeGestoraReceived, elementoDespesaReceived, valor);
+                despesasProcessingService.updateTotalValueSpent(ministerioReceived, orgaoReceived, unidadeGestoraReceived, elementoDespesaReceived, valor);
             }
         } catch (IOException e) {
-            generalGeneratorService.logExceptionMainFile(e);
+            loggingService.logExceptionMainFile(e);
         } catch (NumberFormatException e) {
-            generalGeneratorService.logNumberFormatException(e);
+            loggingService.logNumberFormatException(e);
         }
     }
 
