@@ -20,7 +20,7 @@ public abstract class ExpenseGenerator {
     protected final CreateEntityService createEntityService;
     protected final ProcessExpensesService processExpensesService;
 
-    public ExpenseGenerator(CreateEntityService createEntityService, ProcessExpensesService processExpensesService) {
+    protected ExpenseGenerator(CreateEntityService createEntityService, ProcessExpensesService processExpensesService) {
         this.createEntityService = createEntityService;
         this.processExpensesService = processExpensesService;
     }
