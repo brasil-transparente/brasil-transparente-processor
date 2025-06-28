@@ -18,7 +18,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {NameCorrectorLoader.class})
-class NameCorrectorLoaderTest {
+class NameCorrectorServiceLoaderTest {
 
     @MockitoBean
     private ResourceLoader resourceLoader;
@@ -54,9 +54,7 @@ class NameCorrectorLoaderTest {
         when(resourceLoader.getResource("classpath:name-correction.json")).thenReturn(resource);
         when(resource.getContentAsByteArray()).thenThrow(new IOException("Falha na leitura"));
 
-        UncheckedIOException exception = assertThrows(UncheckedIOException.class, () -> {
-            nameCorrectorLoader.getCorrectionsHashMap();
-        });
+        UncheckedIOException exception = assertThrows(UncheckedIOException.class, () -> nameCorrectorLoader.getCorrectionsHashMap());
 
         assertTrue(exception.getMessage().contains("Erro ao carregar correções de ministérios"));
         assertNotNull(exception.getCause());

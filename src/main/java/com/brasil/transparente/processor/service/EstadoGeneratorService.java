@@ -2,8 +2,10 @@ package com.brasil.transparente.processor.service;
 
 import com.brasil.transparente.processor.entity.*;
 import com.brasil.transparente.processor.repository.UnidadeFederativaRepository;
+import com.brasil.transparente.processor.service.creation.CreateEntityService;
+import com.brasil.transparente.processor.service.creation.ProcessExpensesService;
 import com.brasil.transparente.processor.util.constants.Constants;
-import com.brasil.transparente.processor.util.NameCorrector;
+import com.brasil.transparente.processor.util.NameCorrectorService;
 import com.brasil.transparente.processor.util.constants.UnidadesFederativasConstants;
 import com.brasil.transparente.processor.util.constants.estados.RSConstants;
 import lombok.RequiredArgsConstructor;
@@ -27,12 +29,12 @@ import java.util.Objects;
 @Service
 public class EstadoGeneratorService {
 
-    private final CreatorService creatorService;
+    private final CreateEntityService createEntityService;
     private final LoggingService loggingService;
-    private final NameCorrector nameCorrector;
+    private final NameCorrectorService nameCorrectorService;
     private final DespesaSimplificadaGeneratorService despesaSimplificadaGeneratorService;
     private final UnidadeFederativaRepository unidadeFederativaRepository;
-    private final DespesasProcessingService despesasProcessingService;
+    private final ProcessExpensesService processExpensesService;
 
     @Value("${CSV_PATH}")
     private String csvPath;
@@ -60,13 +62,13 @@ public class EstadoGeneratorService {
 
         unidadeFederativa.setListPoder(poderList);
         for (Poder poder : poderList) {
-            despesasProcessingService.aggregateAllPowerSpending(poder);
-            creatorService.setRelationships(unidadeFederativa);
+            processExpensesService.aggregateAllPowerSpending(poder);
+            createEntityService.setRelationships(unidadeFederativa);
         }
-        double gastoTotalValue = despesasProcessingService.aggregateTotalExpense(unidadeFederativa);
-        despesasProcessingService.removeNegativeOrZeroExpenses(unidadeFederativa.getListPoder());
-        despesasProcessingService.setTotalPercentages(unidadeFederativa.getListPoder(), gastoTotalValue);
-        nameCorrector.refactorNames(unidadeFederativa.getListPoder());
+        double gastoTotalValue = processExpensesService.aggregateTotalExpense(unidadeFederativa);
+        processExpensesService.removeNegativeOrZeroExpenses(unidadeFederativa.getListPoder());
+        processExpensesService.setTotalPercentages(unidadeFederativa.getListPoder(), gastoTotalValue);
+        nameCorrectorService.refactorNames(unidadeFederativa.getListPoder());
         log.info("Salvando no banco de dados");
         unidadeFederativaRepository.save(unidadeFederativa);
         despesaSimplificadaGeneratorService.generateSimplifiedReportRS();
@@ -90,13 +92,13 @@ public class EstadoGeneratorService {
 
         unidadeFederativa.setListPoder(poderList);
         for (Poder poder : poderList) {
-            despesasProcessingService.aggregateAllPowerSpending(poder);
-            creatorService.setRelationships(unidadeFederativa);
+            processExpensesService.aggregateAllPowerSpending(poder);
+            createEntityService.setRelationships(unidadeFederativa);
         }
-        double gastoTotalValue = despesasProcessingService.aggregateTotalExpense(unidadeFederativa);
-        despesasProcessingService.removeNegativeOrZeroExpenses(unidadeFederativa.getListPoder());
-        despesasProcessingService.setTotalPercentages(unidadeFederativa.getListPoder(), gastoTotalValue);
-        nameCorrector.refactorNames(unidadeFederativa.getListPoder());
+        double gastoTotalValue = processExpensesService.aggregateTotalExpense(unidadeFederativa);
+        processExpensesService.removeNegativeOrZeroExpenses(unidadeFederativa.getListPoder());
+        processExpensesService.setTotalPercentages(unidadeFederativa.getListPoder(), gastoTotalValue);
+        nameCorrectorService.refactorNames(unidadeFederativa.getListPoder());
         log.info("Salvando no banco de dados");
         unidadeFederativaRepository.save(unidadeFederativa);
         despesaSimplificadaGeneratorService.generateSimplifiedReportBA();
@@ -136,12 +138,12 @@ public class EstadoGeneratorService {
                 }
 
                 Poder poder = definePoder(poderString, poderList);
-                Ministerio ministerioReceived = creatorService.findOrCreateMinisterio(ministerio, poder);
-                Orgao orgaoReceived = creatorService.findOrCreateOrgao(orgao, ministerioReceived);
-                UnidadeGestora unidadeGestoraReceived = creatorService.findOrCreateUnidadeGestora(unidadeGestora, orgaoReceived);
-                ElementoDespesa elementoDespesaReceived = creatorService.findOrCreateNewElementoDespesa(elementoDespesa, unidadeGestoraReceived);
+                Ministerio ministerioReceived = createEntityService.findOrCreateMinisterio(ministerio, poder);
+                Orgao orgaoReceived = createEntityService.findOrCreateOrgao(orgao, ministerioReceived);
+                UnidadeGestora unidadeGestoraReceived = createEntityService.findOrCreateUnidadeGestora(unidadeGestora, orgaoReceived);
+                ElementoDespesa elementoDespesaReceived = createEntityService.findOrCreateNewElementoDespesa(elementoDespesa, unidadeGestoraReceived);
 
-                despesasProcessingService.updateTotalValueSpent(ministerioReceived, orgaoReceived, unidadeGestoraReceived, elementoDespesaReceived, valor);
+                processExpensesService.updateTotalValueSpent(ministerioReceived, orgaoReceived, unidadeGestoraReceived, elementoDespesaReceived, valor);
             }
         } catch (IOException e) {
             loggingService.logExceptionMainFile(e);
@@ -176,12 +178,12 @@ public class EstadoGeneratorService {
                 }
 
                 Poder poder = definePoder(poderString, poderList);
-                Ministerio ministerioReceived = creatorService.findOrCreateMinisterio(ministerio, poder);
-                Orgao orgaoReceived = creatorService.findOrCreateOrgao(orgao, ministerioReceived);
-                UnidadeGestora unidadeGestoraReceived = creatorService.findOrCreateUnidadeGestora(unidadeGestora, orgaoReceived);
-                ElementoDespesa elementoDespesaReceived = creatorService.findOrCreateNewElementoDespesa(elementoDespesa, unidadeGestoraReceived);
+                Ministerio ministerioReceived = createEntityService.findOrCreateMinisterio(ministerio, poder);
+                Orgao orgaoReceived = createEntityService.findOrCreateOrgao(orgao, ministerioReceived);
+                UnidadeGestora unidadeGestoraReceived = createEntityService.findOrCreateUnidadeGestora(unidadeGestora, orgaoReceived);
+                ElementoDespesa elementoDespesaReceived = createEntityService.findOrCreateNewElementoDespesa(elementoDespesa, unidadeGestoraReceived);
 
-                despesasProcessingService.updateTotalValueSpent(ministerioReceived, orgaoReceived, unidadeGestoraReceived, elementoDespesaReceived, valor);
+                processExpensesService.updateTotalValueSpent(ministerioReceived, orgaoReceived, unidadeGestoraReceived, elementoDespesaReceived, valor);
             }
         } catch (IOException e) {
             loggingService.logExceptionMainFile(e);

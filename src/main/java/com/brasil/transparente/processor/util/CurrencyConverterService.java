@@ -5,7 +5,7 @@ import com.brasil.transparente.processor.util.constants.EmbaixadasConstants;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CurrencyConverter {
+public class CurrencyConverterService {
 
     public double convertCurrency(String unidadeGestora, double valorPago) {
         if (unidadeGestora.contains("- USD")) {
