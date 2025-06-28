@@ -15,11 +15,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {NameCorrector.class})
-class NameCorrectorTest {
+@ContextConfiguration(classes = {NameCorrectorService.class})
+class NameCorrectorServiceTest {
 
     @Autowired
-    private NameCorrector nameCorrector;
+    private NameCorrectorService nameCorrectorService;
     @MockitoBean
     private NameCorrectorLoader nameCorrectorLoader;
 
@@ -54,7 +54,7 @@ class NameCorrectorTest {
         Poder poder = new Poder();
         poder.setListMinisterio(List.of(ministerio));
 
-        nameCorrector.refactorNames(List.of(poder));
+        nameCorrectorService.refactorNames(List.of(poder));
 
         assertEquals("MinNovo", ministerio.getNameMinisterio());
         assertEquals("OrgaoNovo", orgao.getNameOrgao());
@@ -84,7 +84,7 @@ class NameCorrectorTest {
         Poder poder = new Poder();
         poder.setListMinisterio(List.of(ministerio));
 
-        nameCorrector.refactorNames(List.of(poder));
+        nameCorrectorService.refactorNames(List.of(poder));
 
         assertEquals("SemCorrecao", ministerio.getNameMinisterio());
         assertEquals("SemCorrecao", orgao.getNameOrgao());

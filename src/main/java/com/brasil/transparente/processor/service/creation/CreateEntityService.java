@@ -1,4 +1,4 @@
-package com.brasil.transparente.processor.service;
+package com.brasil.transparente.processor.service.creation;
 
 import com.brasil.transparente.processor.entity.*;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +9,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Slf4j
 @Service
-public class CreatorService {
+public class CreateEntityService {
 
     public Ministerio findOrCreateMinisterio(String nameMinisterio, Poder poder) {
         for (Ministerio ministerio : poder.getListMinisterio()) {

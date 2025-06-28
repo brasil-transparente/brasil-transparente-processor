@@ -1,4 +1,4 @@
-package com.brasil.transparente.processor.service;
+package com.brasil.transparente.processor.service.creation;
 
 import com.brasil.transparente.processor.entity.*;
 import com.brasil.transparente.processor.util.OrdererService;
@@ -13,7 +13,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class DespesasProcessingService {
+public class ProcessExpensesService {
 
     private final OrdererService ordererService;
 
