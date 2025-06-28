@@ -51,8 +51,10 @@ public abstract class ExpenseGenerator {
         try {
             String completePath = Paths.get(csvPath, filePath).toString();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(completePath), charset));
-            // Lê e descarta a primeira linha (cabeçalho)
-            bufferedReader.readLine();
+            String header = bufferedReader.readLine();
+            if (header == null) {
+                return null;
+            }
             return bufferedReader;
         } catch (FileNotFoundException e) {
             log.error("Arquivo não encontrado = {} ", String.valueOf(e));
