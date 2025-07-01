@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.util.List;
 
 @Getter
-public class SimplifiedConstants {
+public class DespesaSimplificadaConstants {
 
     public static final List<String> DESPESAS_APOSENTADORIAS = List.of(
             "Aposentadorias do RGPS - Área Urbana",
@@ -72,18 +72,22 @@ public class SimplifiedConstants {
     public static final String TERMO_APOSENTADORIA1 = "aposent";
     public static final String TERMO_APOSENTADORIA2 = "pens";
     public static final String TERMO_APOSENTADORIA3 = "previd";
-    public static final String INSTITUTO_PREVIDENCIA_RS = "Instituto de Previdência do Estado do Rio Grande do Sul";
-    public static final String SECRETARIA_SEGURANCA = "Secretaria da Segurança Pública";
-    public static final String SECRETARIA_PENAL_SOCIOEDUCATIVO_RS = "Secretaria de Sistemas Penal e Socioeducativo";
-    public static final String SECRETARIA_SAUDE = "Secretaria da Saúde";
-    public static final String SECRETARIA_EDUCACAO = "Secretaria da Educação";
+    public static final List<String> INSTITUTO_PREVIDENCIA_RS = List.of("Instituto de Previdência do Estado do Rio Grande do Sul");
+    public static final List<String> SECRETARIA_SAUDE = List.of("Secretaria da Saúde");
+    public static final List<String> SECRETARIA_EDUCACAO = List.of("Secretaria da Educação");
     public static final String SEGURANCA = "Segurança";
-    public static final String FUNDO_PREVIDENCIA_BAHIA_1 = "Fundo Financeiro da Previdência Social dos Servidores Públicos do Estado da Bahia";
-    public static final String FUNDO_PREVIDENCIA_BAHIA_2 = "Fundo de Proteção Social dos Policiais Militares e dos Bombeiros Militares do Estado da Bahia";
-    public static final String SECRETARIA_PENAL_SOCIOEDUCATIVO_BA = "Secretaria de Administração Penitenciária e Ressocialização";
+    public static final List<String> FUNDOS_PREVIDENCIA_BAHIA = List.of(
+            "Fundo Financeiro da Previdência Social dos Servidores Públicos do Estado da Bahia",
+            "Fundo de Proteção Social dos Policiais Militares e dos Bombeiros Militares do Estado da Bahia"
+    );
     public static final String DIVIDA_PUBLICA = "Dívida Pública";
     public static final String ENCARGOS_GERAIS = "Encargos Gerais do Estado";
     public static final String INFRAESTRUTURA = "Infraestrutura";
+    public static final List<String> SECRETARIAS_SEGURANCA = List.of(
+            "Secretaria da Segurança Pública",
+            "Secretaria de Sistemas Penal e Socioeducativo",
+            "Secretaria de Administração Penitenciária e Ressocialização"
+    );
     public static final List<String> SECRETARIAS_INFRAESTRUTURA = List.of(
             "Secretaria de Infraestrutura",
             "Secretaria de Desenvolvimento Urbano",
