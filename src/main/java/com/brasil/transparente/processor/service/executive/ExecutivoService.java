@@ -30,12 +30,12 @@ public class ExecutivoService {
     Poder poder = new Poder(EXECUTIVO);
 
     public Poder generateExecutiveBranch(String year) {
-        log.info("Poder Executivo - Iniciando");
+        log.info("Iniciando - Poder Executivo");
         executivoGeneratorService.generateExpensesByMonth(poder, StandardCharsets.ISO_8859_1, "/Executivo/despesas" + year + "/", 47, ";", year);
         spySupremoTribunalFederalGeneratorService.generateExpenses(poder, StandardCharsets.UTF_8, "/Judiciario/" + SUPREMO_TRIBUNAL_FEDERAL + "/despesas" + year + "/STF.csv",8, ",");
         spyJusticaFederalGeneratorService.generateExpensesByMonth(poder, StandardCharsets.UTF_8, "/Judiciario/" + JUSTICA_FEDERAL + "/despesas" + year + "/", 9, "\t", year);
         processExpensesService.aggregateAllPowerSpending(poder);
-        log.info("Poder Executivo - Finalizado");
+        log.info("Finalizado - Poder Executivo");
         return poder;
     }
 

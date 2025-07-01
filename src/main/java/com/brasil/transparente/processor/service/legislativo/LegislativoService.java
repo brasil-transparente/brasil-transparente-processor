@@ -27,11 +27,11 @@ public class LegislativoService {
     Poder poder = new Poder(LEGISLATIVO);
 
     public Poder generateLegislativeBranch() {
-        log.info("Poder Legislativo - Iniciando");
+        log.info("Iniciando - Poder Legislativo");
         camaraDeputadosGeneratorService.generateExpenses(poder, StandardCharsets.UTF_8, "/Legislativo/Camara Deputados.csv",2, "\t");
         senadoFederalGeneratorService.generateExpenses(poder, StandardCharsets.UTF_8, "/Legislativo/Senado Federal.csv",3, "\t");
         processExpensesService.aggregateAllPowerSpending(poder);
-        log.info("Poder Legislativo - Finalizado");
+        log.info("Finalizado - Poder Legislativo");
         return poder;
     }
 

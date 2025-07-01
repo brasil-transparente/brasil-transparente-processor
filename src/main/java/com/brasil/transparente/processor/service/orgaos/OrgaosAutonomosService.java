@@ -34,7 +34,7 @@ public class OrgaosAutonomosService {
     private static final String MINISTERIO_PUBLICO_PATH = "/Orgaos Autonomos/Ministerio Publico/";
 
     public Poder generateIndependentOrgansBranch(String year) {
-        log.info("Orgãos Autônomos - Iniciando");
+        log.info("Iniciando - Orgãos Autônomos");
         tribunalDeContasGeneratorService.generateExpensesByMonth(poder, StandardCharsets.UTF_8, "/Orgaos Autonomos/Tribunal de Contas da Uniao/",14, ";", year);
         defensoriaPublicaGeneratorService.generateExpenses(poder, StandardCharsets.UTF_8, "/Orgaos Autonomos/Defensoria Publica da Uniao/" + year + ".csv",2, ";");
         ministerioPublicoFederalGeneratorService.generateExpenses(poder, StandardCharsets.UTF_8, MINISTERIO_PUBLICO_PATH + MINISTERIO_PUBLICO_FEDERAL + "/" + year + ".csv",2, ";");
@@ -43,7 +43,7 @@ public class OrgaosAutonomosService {
         ministerioPublicoFederalGeneratorService.generateExpenses(poder, StandardCharsets.UTF_8, MINISTERIO_PUBLICO_PATH + MINISTERIO_PUBLICO_DF_TERRITORIOS + "/" + year + ".csv",2, ";");
         ministerioPublicoFederalGeneratorService.generateExpenses(poder, StandardCharsets.UTF_8, MINISTERIO_PUBLICO_PATH + ESCOLA_SUPERIOR_MINISTERIO_PUBLICO_UNIAO + "/" + year + ".csv",2, ";");
         processExpensesService.aggregateAllPowerSpending(poder);
-        log.info("Órgãos Autônomos - Finalizado");
+        log.info("Finalizado - Órgãos Autônomos");
         return poder;
     }
 

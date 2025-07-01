@@ -4,6 +4,7 @@ import com.brasil.transparente.processor.entity.*;
 import com.brasil.transparente.processor.repository.UnidadeFederativaRepository;
 import com.brasil.transparente.processor.service.creation.CreateEntityService;
 import com.brasil.transparente.processor.service.creation.ProcessExpensesService;
+import com.brasil.transparente.processor.service.simplificada.OrchestrationService;
 import com.brasil.transparente.processor.util.constants.Constants;
 import com.brasil.transparente.processor.util.NameCorrectorService;
 import com.brasil.transparente.processor.util.constants.UnidadesFederativasConstants;
@@ -32,7 +33,7 @@ public class EstadoGeneratorService {
     private final CreateEntityService createEntityService;
     private final LoggingService loggingService;
     private final NameCorrectorService nameCorrectorService;
-    private final DespesaSimplificadaGeneratorService despesaSimplificadaGeneratorService;
+    private final OrchestrationService orchestrationService;
     private final UnidadeFederativaRepository unidadeFederativaRepository;
     private final ProcessExpensesService processExpensesService;
 
@@ -40,8 +41,8 @@ public class EstadoGeneratorService {
     private String csvPath;
 
     public void generateStateExpensesRS(String year, String state) {
-        log.info("Rio Grande do Sul - Iniciando");
-        UnidadeFederativa unidadeFederativa = new UnidadeFederativa(UnidadesFederativasConstants.RS);
+        log.info("Iniciando - Rio Grande do Sul");
+        UnidadeFederativa unidadeFederativa = new UnidadeFederativa(UnidadesFederativasConstants.RS_NAME);
         List<Poder> poderList = new ArrayList<>(Arrays.asList(
                 new Poder("Poder Executivo"),
                 new Poder("Poder Legislativo"),
@@ -56,7 +57,7 @@ public class EstadoGeneratorService {
             String relativePath = "/Estados/" + state + "/" + documentNumber + ".csv";
             String filePath = Paths.get(csvPath, relativePath).toString();
             String delimiter = ";";
-            createStateExpanseStructureRS(filePath, delimiter, month, state, poderList);
+            createStateExpanseStructureRS(filePath, delimiter, poderList);
             month++;
         }
 
@@ -71,13 +72,13 @@ public class EstadoGeneratorService {
         nameCorrectorService.refactorNames(unidadeFederativa.getListPoder());
         log.info("Salvando no banco de dados");
         unidadeFederativaRepository.save(unidadeFederativa);
-        despesaSimplificadaGeneratorService.generateSimplifiedReportRS();
-        log.info("Rio Grande do Sul - Finalizado");
+        orchestrationService.generateSimplifiedReportRS();
+        log.info("Finalizado - Rio Grande do Sul");
     }
 
     public void generateStateExpensesBA(String year, String state) {
-        log.info("Bahia - Iniciando");
-        UnidadeFederativa unidadeFederativa = new UnidadeFederativa(UnidadesFederativasConstants.BA);
+        log.info("Iniciando - Bahia");
+        UnidadeFederativa unidadeFederativa = new UnidadeFederativa(UnidadesFederativasConstants.BA_NAME);
         List<Poder> poderList = new ArrayList<>(Arrays.asList(
                 new Poder("Poder Executivo"),
                 new Poder("Poder Legislativo"),
@@ -88,7 +89,7 @@ public class EstadoGeneratorService {
         String relativePath = "/Estados/" + state + "/" + yearString + ".csv";
         String filePath = Paths.get(csvPath, relativePath).toString();
         String delimiter = ";";
-        createStateExpanseStructureBA(filePath, delimiter, state, poderList);
+        createStateExpanseStructureBA(filePath, delimiter, poderList);
 
         unidadeFederativa.setListPoder(poderList);
         for (Poder poder : poderList) {
@@ -101,12 +102,11 @@ public class EstadoGeneratorService {
         nameCorrectorService.refactorNames(unidadeFederativa.getListPoder());
         log.info("Salvando no banco de dados");
         unidadeFederativaRepository.save(unidadeFederativa);
-        despesaSimplificadaGeneratorService.generateSimplifiedReportBA();
-        log.info("Bahia - Finalizado");
+        orchestrationService.generateSimplifiedReportBA();
+        log.info("Finalizado - Bahia");
     }
 
-    private void createStateExpanseStructureRS(String filePath, String delimiter, int month, String state, List<Poder> poderList) {
-        log.info("{} - Lendo arquivos e criando estrutura de despesas. Mês = {}", state, month);
+    private void createStateExpanseStructureRS(String filePath, String delimiter, List<Poder> poderList) {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), StandardCharsets.ISO_8859_1))) {
             String firstLine = br.readLine();
             String line;
@@ -152,8 +152,7 @@ public class EstadoGeneratorService {
         }
     }
 
-    private void createStateExpanseStructureBA(String filePath, String delimiter, String state, List<Poder> poderList) {
-        log.info("{} - Lendo arquivos e criando estrutura de despesas.", state);
+    private void createStateExpanseStructureBA(String filePath, String delimiter, List<Poder> poderList) {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8))) {
             String firstLine = br.readLine();
             String line;

@@ -36,7 +36,7 @@ public class JudiciarioService {
     private static final String DESPESA_PATH = "/despesas";
 
     public Poder generateJudiciaryBranch(String year) {
-        log.info("Poder Judiciário - Iniciando");
+        log.info("Iniciando - Poder Judiciário");
         supremoTribunalFederalGeneratorService.generateExpenses(poder, StandardCharsets.UTF_8, JUDICIARIO_PATH + SUPREMO_TRIBUNAL_FEDERAL + DESPESA_PATH + year + "/STF.csv",8, ",");
         justicaPadraoGeneratorService.generateExpensesByMonth(poder, StandardCharsets.UTF_8, JUDICIARIO_PATH + SUPERIOR_TRIBUNAL_JUSTICA + DESPESA_PATH + year + "/", 9, "\t", year);
         justicaPadraoGeneratorService.generateExpensesByMonth(poder, StandardCharsets.UTF_8, JUDICIARIO_PATH + JUSTICA_MILITAR + DESPESA_PATH + year + "/", 9, "\t", year);
@@ -46,7 +46,7 @@ public class JudiciarioService {
         justicaPadraoGeneratorService.generateExpensesByMonth(poder, StandardCharsets.UTF_8, JUDICIARIO_PATH + JUSTICA_DF_TERRITORIOS + DESPESA_PATH + year + "/", 9, "\t", year);
         justicaPadraoGeneratorService.generateExpensesByMonth(poder, StandardCharsets.UTF_8, JUDICIARIO_PATH + CONSELHO_NACIONAL_JUSTICA + DESPESA_PATH + year + "/", 9, "\t", year);
         processExpensesService.aggregateAllPowerSpending(poder);
-        log.info("Poder Judiciário - Finalizado");
+        log.info("Finalizado - Poder Judiciário");
         return poder;
     }
 
