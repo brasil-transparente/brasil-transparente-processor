@@ -1,4 +1,4 @@
-package com.brasil.transparente.processor.service.executive.generator;
+package com.brasil.transparente.processor.service.executivo.generator;
 
 import com.brasil.transparente.processor.entity.Poder;
 import com.brasil.transparente.processor.service.creation.CreateEntityService;
@@ -29,7 +29,7 @@ public class ExecutivoGeneratorService extends ExpenseGenerator {
     }
 
     @Override
-    protected void processLine(Poder poder, List<String> refinedLine) {
+    protected void processLine(List<Poder> poderList, List<String> refinedLine) {
         String nameMinisterio = refinedLine.get(2);
         String nameOrgao = refinedLine.get(4);
         String nameUnidadeGestora = refinedLine.get(6);
@@ -58,7 +58,7 @@ public class ExecutivoGeneratorService extends ExpenseGenerator {
             nameUnidadeGestora = nameCorrectorService.mergeEmbassyNames(nameUnidadeGestora);
         }
 
-        createEntitiesAndUpdateValues(poder, nameMinisterio, nameOrgao, nameUnidadeGestora, nameElementoDespesa, valorPagoFinal);
+        createEntitiesAndUpdateValues(poderList.getFirst(), nameMinisterio, nameOrgao, nameUnidadeGestora, nameElementoDespesa, valorPagoFinal);
     }
 
 }

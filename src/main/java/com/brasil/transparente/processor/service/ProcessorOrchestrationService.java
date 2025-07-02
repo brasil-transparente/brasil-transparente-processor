@@ -5,8 +5,9 @@ import com.brasil.transparente.processor.entity.UnidadeFederativa;
 import com.brasil.transparente.processor.repository.UnidadeFederativaRepository;
 import com.brasil.transparente.processor.service.creation.CreateEntityService;
 import com.brasil.transparente.processor.service.creation.ProcessExpensesService;
+import com.brasil.transparente.processor.service.estados.EstadosService;
 import com.brasil.transparente.processor.service.simplificada.OrchestrationService;
-import com.brasil.transparente.processor.service.executive.ExecutivoService;
+import com.brasil.transparente.processor.service.executivo.ExecutivoService;
 import com.brasil.transparente.processor.service.judiciario.JudiciarioService;
 import com.brasil.transparente.processor.service.legislativo.LegislativoService;
 import com.brasil.transparente.processor.service.orgaos.OrgaosAutonomosService;
@@ -30,9 +31,9 @@ public class ProcessorOrchestrationService {
     private final OrgaosAutonomosService orgaosAutonomosGeneratorService;
     private final CreateEntityService createEntityService;
     private final NameCorrectorService nameCorrectorService;
-    private final EstadoGeneratorService estadoGeneratorService;
     private final UnidadeFederativaRepository unidadeFederativaRepository;
     private final ProcessExpensesService processExpensesService;
+    private final EstadosService estadosService;
 
     private static final String UNIAO_FEDERAL = "União Federal";
     List<Poder> poderList = new ArrayList<>();
@@ -73,8 +74,7 @@ public class ProcessorOrchestrationService {
 
     private void generateStatesReport(String year) {
         log.info("Iniciando - Estados");
-        estadoGeneratorService.generateStateExpensesRS(year, "RS");
-        estadoGeneratorService.generateStateExpensesBA(year, "BA");
+        estadosService.generateStates(year);
         log.info("Finalizado - Estados");
     }
 

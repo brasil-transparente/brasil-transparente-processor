@@ -22,7 +22,7 @@ public class DefensoriaPublicaGeneratorService extends ExpenseGenerator {
     }
 
     @Override
-    protected void processLine(Poder poder, List<String> refinedLine) {
+    protected void processLine(List<Poder> poderList, List<String> refinedLine) {
         String elementoDespesa = refinedLine.get(0);
         String valorString = refinedLine.get(1);
         double valorPagoFinal = Double.parseDouble(valorString);
@@ -31,7 +31,7 @@ public class DefensoriaPublicaGeneratorService extends ExpenseGenerator {
             return;
         }
 
-        createEntitiesAndUpdateValues(poder, DEFENSORIA_PUBLICA_UNIAO, DEFENSORIA_PUBLICA_UNIAO, DEFENSORIA_PUBLICA_UNIAO, elementoDespesa, valorPagoFinal);
+        createEntitiesAndUpdateValues(poderList.getFirst(), DEFENSORIA_PUBLICA_UNIAO, DEFENSORIA_PUBLICA_UNIAO, DEFENSORIA_PUBLICA_UNIAO, elementoDespesa, valorPagoFinal);
     }
 
 }

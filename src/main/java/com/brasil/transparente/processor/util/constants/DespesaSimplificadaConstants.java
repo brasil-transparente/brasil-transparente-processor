@@ -7,6 +7,10 @@ import java.util.List;
 @Getter
 public class DespesaSimplificadaConstants {
 
+    private DespesaSimplificadaConstants() {
+        throw new UnsupportedOperationException("Class should not be instantiated");
+    }
+
     public static final List<String> DESPESAS_APOSENTADORIAS = List.of(
             "Aposentadorias do RGPS - Área Urbana",
             "Aposentadorias do RGPS - Área Rural",

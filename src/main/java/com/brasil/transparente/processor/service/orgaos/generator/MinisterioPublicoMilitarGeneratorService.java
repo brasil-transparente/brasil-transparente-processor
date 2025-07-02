@@ -23,7 +23,7 @@ public class MinisterioPublicoMilitarGeneratorService extends ExpenseGenerator {
     }
 
     @Override
-    protected void processLine(Poder poder, List<String> refinedLine) {
+    protected void processLine(List<Poder> poderList, List<String> refinedLine) {
         String elementoDespesa = refinedLine.get(0);
         String valorString = refinedLine.get(1);
         valorString = valorString.replace(",", "");
@@ -33,7 +33,7 @@ public class MinisterioPublicoMilitarGeneratorService extends ExpenseGenerator {
             return;
         }
 
-        createEntitiesAndUpdateValues(poder, MINISTERIO_PUBLICO_UNIAO, MINISTERIO_PUBLICO_MILITAR, MINISTERIO_PUBLICO_MILITAR, elementoDespesa, valorPagoFinal);
+        createEntitiesAndUpdateValues(poderList.getFirst(), MINISTERIO_PUBLICO_UNIAO, MINISTERIO_PUBLICO_MILITAR, MINISTERIO_PUBLICO_MILITAR, elementoDespesa, valorPagoFinal);
     }
 
 }

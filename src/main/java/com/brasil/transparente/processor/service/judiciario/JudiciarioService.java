@@ -6,9 +6,10 @@ import com.brasil.transparente.processor.service.judiciario.generator.JusticaPad
 import com.brasil.transparente.processor.service.judiciario.generator.SupremoTribunalFederalGeneratorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -19,11 +20,8 @@ public class JudiciarioService {
     private final SupremoTribunalFederalGeneratorService supremoTribunalFederalGeneratorService;
     private final JusticaPadraoGeneratorService justicaPadraoGeneratorService;
 
-    @Value("${CSV_PATH}")
-    private String csvPath;
-
     private static final String JUDICIARIO = "Poder Judiciário";
-    Poder poder = new Poder(JUDICIARIO);
+    List<Poder> listPoder = List.of(new Poder(JUDICIARIO));
     private static final String SUPREMO_TRIBUNAL_FEDERAL = "Supremo Tribunal Federal";
     private static final String SUPERIOR_TRIBUNAL_JUSTICA = "Superior Tribunal de Justiça";
     private static final String JUSTICA_MILITAR = "Justiça Militar";
@@ -37,17 +35,17 @@ public class JudiciarioService {
 
     public Poder generateJudiciaryBranch(String year) {
         log.info("Iniciando - Poder Judiciário");
-        supremoTribunalFederalGeneratorService.generateExpenses(poder, StandardCharsets.UTF_8, JUDICIARIO_PATH + SUPREMO_TRIBUNAL_FEDERAL + DESPESA_PATH + year + "/STF.csv",8, ",");
-        justicaPadraoGeneratorService.generateExpensesByMonth(poder, StandardCharsets.UTF_8, JUDICIARIO_PATH + SUPERIOR_TRIBUNAL_JUSTICA + DESPESA_PATH + year + "/", 9, "\t", year);
-        justicaPadraoGeneratorService.generateExpensesByMonth(poder, StandardCharsets.UTF_8, JUDICIARIO_PATH + JUSTICA_MILITAR + DESPESA_PATH + year + "/", 9, "\t", year);
-        justicaPadraoGeneratorService.generateExpensesByMonth(poder, StandardCharsets.UTF_8, JUDICIARIO_PATH + JUSTICA_FEDERAL + DESPESA_PATH + year + "/", 9, "\t", year);
-        justicaPadraoGeneratorService.generateExpensesByMonth(poder, StandardCharsets.UTF_8, JUDICIARIO_PATH + JUSTICA_ELEITORAL + DESPESA_PATH + year + "/", 9, "\t", year);
-        justicaPadraoGeneratorService.generateExpensesByMonth(poder, StandardCharsets.UTF_8, JUDICIARIO_PATH + JUSTICA_TRABALHO + DESPESA_PATH + year + "/", 9, "\t", year);
-        justicaPadraoGeneratorService.generateExpensesByMonth(poder, StandardCharsets.UTF_8, JUDICIARIO_PATH + JUSTICA_DF_TERRITORIOS + DESPESA_PATH + year + "/", 9, "\t", year);
-        justicaPadraoGeneratorService.generateExpensesByMonth(poder, StandardCharsets.UTF_8, JUDICIARIO_PATH + CONSELHO_NACIONAL_JUSTICA + DESPESA_PATH + year + "/", 9, "\t", year);
-        processExpensesService.aggregateAllPowerSpending(poder);
+        supremoTribunalFederalGeneratorService.generateExpenses(listPoder, StandardCharsets.UTF_8, JUDICIARIO_PATH + SUPREMO_TRIBUNAL_FEDERAL + DESPESA_PATH + year + "/STF.csv",8, ",");
+        justicaPadraoGeneratorService.generateExpensesByMonth(listPoder, StandardCharsets.UTF_8, JUDICIARIO_PATH + SUPERIOR_TRIBUNAL_JUSTICA + DESPESA_PATH + year + "/", 9, "\t", year);
+        justicaPadraoGeneratorService.generateExpensesByMonth(listPoder, StandardCharsets.UTF_8, JUDICIARIO_PATH + JUSTICA_MILITAR + DESPESA_PATH + year + "/", 9, "\t", year);
+        justicaPadraoGeneratorService.generateExpensesByMonth(listPoder, StandardCharsets.UTF_8, JUDICIARIO_PATH + JUSTICA_FEDERAL + DESPESA_PATH + year + "/", 9, "\t", year);
+        justicaPadraoGeneratorService.generateExpensesByMonth(listPoder, StandardCharsets.UTF_8, JUDICIARIO_PATH + JUSTICA_ELEITORAL + DESPESA_PATH + year + "/", 9, "\t", year);
+        justicaPadraoGeneratorService.generateExpensesByMonth(listPoder, StandardCharsets.UTF_8, JUDICIARIO_PATH + JUSTICA_TRABALHO + DESPESA_PATH + year + "/", 9, "\t", year);
+        justicaPadraoGeneratorService.generateExpensesByMonth(listPoder, StandardCharsets.UTF_8, JUDICIARIO_PATH + JUSTICA_DF_TERRITORIOS + DESPESA_PATH + year + "/", 9, "\t", year);
+        justicaPadraoGeneratorService.generateExpensesByMonth(listPoder, StandardCharsets.UTF_8, JUDICIARIO_PATH + CONSELHO_NACIONAL_JUSTICA + DESPESA_PATH + year + "/", 9, "\t", year);
+        processExpensesService.aggregateAllPowerSpending(listPoder.getFirst());
         log.info("Finalizado - Poder Judiciário");
-        return poder;
+        return listPoder.getFirst();
     }
 
 }

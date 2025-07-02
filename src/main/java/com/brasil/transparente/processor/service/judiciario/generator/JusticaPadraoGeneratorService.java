@@ -22,7 +22,7 @@ public class JusticaPadraoGeneratorService extends ExpenseGenerator {
     }
 
     @Override
-    protected void processLine(Poder poder, List<String> refinedLine) {
+    protected void processLine(List<Poder> poderList, List<String> refinedLine) {
         String orgaoSuperior = refinedLine.get(3);
         String unidadeOrcamentaria = refinedLine.get(4);
         String unidadeGestora = refinedLine.get(5);
@@ -35,7 +35,7 @@ public class JusticaPadraoGeneratorService extends ExpenseGenerator {
             return;
         }
 
-        createEntitiesAndUpdateValues(poder, orgaoSuperior, unidadeOrcamentaria, unidadeGestora, elementoDespesa, valorPagoFinal);
+        createEntitiesAndUpdateValues(poderList.getFirst(), orgaoSuperior, unidadeOrcamentaria, unidadeGestora, elementoDespesa, valorPagoFinal);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.brasil.transparente.processor.service.executive.generator;
+package com.brasil.transparente.processor.service.executivo.generator;
 
 import com.brasil.transparente.processor.entity.Poder;
 import com.brasil.transparente.processor.service.ExpenseGenerator;
@@ -24,7 +24,7 @@ public class SpySupremoTribunalFederalGeneratorService extends ExpenseGenerator 
     }
 
     @Override
-    protected void processLine(Poder poder, List<String> refinedLine) {
+    protected void processLine(List<Poder> poderList, List<String> refinedLine) {
         String planoOrcamentario = refinedLine.get(4);
         String valorString = refinedLine.get(7);
         valorString = valorString.replace("R$", "");
@@ -34,7 +34,7 @@ public class SpySupremoTribunalFederalGeneratorService extends ExpenseGenerator 
             return;
         }
 
-        createEntitiesAndUpdateValues(poder, PRECATORIOS_RPVS, SUPREMO_TRIBUNAL_FEDERAL, SUPREMO_TRIBUNAL_FEDERAL, planoOrcamentario, valorPagoFinal);
+        createEntitiesAndUpdateValues(poderList.getFirst(), PRECATORIOS_RPVS, SUPREMO_TRIBUNAL_FEDERAL, SUPREMO_TRIBUNAL_FEDERAL, planoOrcamentario, valorPagoFinal);
     }
 
 }
