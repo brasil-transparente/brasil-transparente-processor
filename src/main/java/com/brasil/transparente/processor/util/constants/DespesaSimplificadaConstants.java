@@ -8,7 +8,7 @@ import java.util.List;
 public class DespesaSimplificadaConstants {
 
     private DespesaSimplificadaConstants() {
-        throw new UnsupportedOperationException("Class should not be instantiated");
+        throw new UnsupportedOperationException("Classe não deve ser instanciada");
     }
 
     public static final List<String> DESPESAS_APOSENTADORIAS = List.of(

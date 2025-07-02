@@ -8,6 +8,10 @@ import java.util.List;
 
 public class PoderFactory {
 
+    private PoderFactory() {
+        throw new UnsupportedOperationException("Classe não deve ser instanciada");
+    }
+
     public static List<Poder> criarListaPoderes() {
         return new ArrayList<>(Arrays.asList(
                 new Poder("Poder Executivo"),
