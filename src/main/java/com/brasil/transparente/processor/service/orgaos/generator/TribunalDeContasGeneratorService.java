@@ -22,7 +22,7 @@ public class TribunalDeContasGeneratorService extends ExpenseGenerator {
     }
 
     @Override
-    protected void processLine(Poder poder, List<String> refinedLine) {
+    protected void processLine(List<Poder> poderList, List<String> refinedLine) {
         String unidadeGestora = refinedLine.get(1);
         String valorString = refinedLine.get(5);
         String elementoDespesa = refinedLine.get(12);
@@ -40,7 +40,7 @@ public class TribunalDeContasGeneratorService extends ExpenseGenerator {
             return;
         }
 
-        createEntitiesAndUpdateValues(poder, TRIBUNAL_CONTAS_UNIAO, TRIBUNAL_CONTAS_UNIAO, unidadeGestora, elementoDespesa, valorPagoFinal);
+        createEntitiesAndUpdateValues(poderList.getFirst(), TRIBUNAL_CONTAS_UNIAO, TRIBUNAL_CONTAS_UNIAO, unidadeGestora, elementoDespesa, valorPagoFinal);
     }
 
 }

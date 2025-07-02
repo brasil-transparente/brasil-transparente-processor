@@ -25,25 +25,25 @@ public abstract class ExpenseGenerator {
         this.processExpensesService = processExpensesService;
     }
 
-    protected abstract void processLine(Poder poder, List<String> refinedLine);
+    protected abstract void processLine(List<Poder> poderList, List<String> refinedLine);
 
-    public final void generateExpenses(Poder poder, Charset charset, String filePath, int lineLength, String delimiter) {
+    public final void generateExpenses(List<Poder> poderList, Charset charset, String filePath, int lineLength, String delimiter) {
         BufferedReader bufferedReader = createBufferedReader(charset, filePath);
         try (bufferedReader) {
-            iterateThroughSingleFile(poder, bufferedReader, lineLength, delimiter);
+            iterateThroughSingleFile(poderList, bufferedReader, lineLength, delimiter);
         } catch (IOException e) {
             log.error("Erro ao iterar o arquivo", e);
             throw new RuntimeException(e);
         }
     }
 
-    public final void generateExpensesByMonth(Poder poder, Charset charset, String filePath, int lineLength, String delimiter, String year) {
+    public final void generateExpensesByMonth(List<Poder> poderList, Charset charset, String filePath, int lineLength, String delimiter, String year) {
         for (int month = 1; month <= 12; month++) {
             String yearString = String.valueOf(year);
             String monthString = String.format("%02d", month);
             String documentNumber = yearString + monthString + ".csv";
             String documentPath = filePath + documentNumber;
-            generateExpenses(poder, charset, documentPath, lineLength, delimiter);
+            generateExpenses(poderList, charset, documentPath, lineLength, delimiter);
         }
     }
 
@@ -65,14 +65,14 @@ public abstract class ExpenseGenerator {
         }
     }
 
-    protected void iterateThroughSingleFile(Poder poder, BufferedReader bufferedReader, int lineLength, String delimiter) {
+    protected void iterateThroughSingleFile(List<Poder> poderList, BufferedReader bufferedReader, int lineLength, String delimiter) {
         try {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] rawLine = line.split(delimiter);
-                if (rawLine.length == lineLength) {
+                if (lineLength == 0 || rawLine.length == lineLength) {
                     List<String> refinedLine = refineLine(rawLine);
-                    processLine(poder, refinedLine);
+                    processLine(poderList, refinedLine);
                 } else {
                     log.error("Linha inválida: esperados {} campos, encontrados {}", lineLength, rawLine.length);
                 }

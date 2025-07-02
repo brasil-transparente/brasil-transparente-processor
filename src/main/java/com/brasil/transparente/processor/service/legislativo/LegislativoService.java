@@ -6,10 +6,10 @@ import com.brasil.transparente.processor.service.legislativo.generator.CamaraDep
 import com.brasil.transparente.processor.service.legislativo.generator.SenadoFederalGeneratorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -20,19 +20,16 @@ public class LegislativoService {
     private final CamaraDeputadosGeneratorService camaraDeputadosGeneratorService;
     private final SenadoFederalGeneratorService senadoFederalGeneratorService;
 
-    @Value("${CSV_PATH}")
-    private String csvPath;
-
     private static final String LEGISLATIVO = "Poder Legislativo";
-    Poder poder = new Poder(LEGISLATIVO);
+    List<Poder> listPoder = List.of(new Poder(LEGISLATIVO));
 
     public Poder generateLegislativeBranch() {
         log.info("Iniciando - Poder Legislativo");
-        camaraDeputadosGeneratorService.generateExpenses(poder, StandardCharsets.UTF_8, "/Legislativo/Camara Deputados.csv",2, "\t");
-        senadoFederalGeneratorService.generateExpenses(poder, StandardCharsets.UTF_8, "/Legislativo/Senado Federal.csv",3, "\t");
-        processExpensesService.aggregateAllPowerSpending(poder);
+        camaraDeputadosGeneratorService.generateExpenses(listPoder, StandardCharsets.UTF_8, "/Legislativo/Camara Deputados.csv",2, "\t");
+        senadoFederalGeneratorService.generateExpenses(listPoder, StandardCharsets.UTF_8, "/Legislativo/Senado Federal.csv",3, "\t");
+        processExpensesService.aggregateAllPowerSpending(listPoder.getFirst());
         log.info("Finalizado - Poder Legislativo");
-        return poder;
+        return listPoder.getFirst();
     }
 
 }
