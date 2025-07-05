@@ -5,6 +5,7 @@ import com.brasil.transparente.processor.entity.UnidadeFederativa;
 import com.brasil.transparente.processor.repository.UnidadeFederativaRepository;
 import com.brasil.transparente.processor.service.creation.CreateEntityService;
 import com.brasil.transparente.processor.service.creation.ProcessExpensesService;
+import com.brasil.transparente.processor.service.estados.generator.AmazonasGeneratorService;
 import com.brasil.transparente.processor.service.estados.generator.BahiaGeneratorService;
 import com.brasil.transparente.processor.service.estados.generator.RioGrandeDoSulGeneratorService;
 import com.brasil.transparente.processor.service.simplificada.OrchestrationService;
@@ -30,10 +31,12 @@ public class EstadosService {
     private final OrchestrationService orchestrationService;
     private final RioGrandeDoSulGeneratorService rioGrandeDoSulGeneratorService;
     private final BahiaGeneratorService bahiaGeneratorService;
+    private final AmazonasGeneratorService amazonasGeneratorService;
 
     public void generateStates(String year) {
         processRioGrandeDoSul(year);
         processBahia(year);
+        processAmazonas(year);
     }
 
     private void processState(UnidadeFederativa unidadeFederativa, List<Poder> poderList) {
@@ -64,6 +67,14 @@ public class EstadosService {
         bahiaGeneratorService.generateExpenses(poderList, StandardCharsets.UTF_8, "/Estados/" + UnidadesFederativasConstants.BA_SIGLA + "/" + year +".csv", 63, ";");
         processState(unidadeFederativa, poderList);
         orchestrationService.generateSimplifiedReportBA();
+    }
+
+    private void processAmazonas(String year) {
+        List<Poder> poderList = PoderFactory.criarListaPoderes();
+        UnidadeFederativa unidadeFederativa = new UnidadeFederativa(UnidadesFederativasConstants.AM_NAME);
+        amazonasGeneratorService.generateExpenses(poderList, StandardCharsets.UTF_8, "/Estados/" + UnidadesFederativasConstants.BA_SIGLA + "/" + year +".csv", 63, ";");
+        processState(unidadeFederativa, poderList);
+        orchestrationService.generateSimplifiedReportAM();
     }
 
 }
