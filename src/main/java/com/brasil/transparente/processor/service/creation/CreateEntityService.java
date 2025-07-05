@@ -60,7 +60,7 @@ public class CreateEntityService {
         return newUnidadeGestora;
     }
 
-    public ElementoDespesa findOrCreateNewElementoDespesa(String nameElementoDespesaLine, UnidadeGestora unidadeGestora) {
+    public ElementoDespesa findOrCreateElementoDespesa(String nameElementoDespesaLine, UnidadeGestora unidadeGestora) {
         if (!unidadeGestora.getListElementoDespesa().isEmpty()) {
             for (ElementoDespesa elementoDespesa : unidadeGestora.getListElementoDespesa()) {
                 if (Objects.equals(nameElementoDespesaLine, elementoDespesa.getNameElementoDespesa())) {

@@ -95,7 +95,7 @@ public abstract class ExpenseGenerator {
         Ministerio ministerioReceived = createEntityService.findOrCreateMinisterio(ministerio, poder);
         Orgao orgaoReceived = createEntityService.findOrCreateOrgao(orgao, ministerioReceived);
         UnidadeGestora unidadeGestoraReceived = createEntityService.findOrCreateUnidadeGestora(unidadeGestora, orgaoReceived);
-        ElementoDespesa elementoDespesaReceived = createEntityService.findOrCreateNewElementoDespesa(elementoDespesa, unidadeGestoraReceived);
+        ElementoDespesa elementoDespesaReceived = createEntityService.findOrCreateElementoDespesa(elementoDespesa, unidadeGestoraReceived);
         processExpensesService.updateTotalValueSpent(ministerioReceived, orgaoReceived, unidadeGestoraReceived, elementoDespesaReceived, valor);
     }
 
