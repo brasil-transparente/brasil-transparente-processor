@@ -53,7 +53,7 @@ dependencies {
 }
 
 application {
-    mainClass = 'com.brasil.transparente.BrasilTransparenteProcessorApplication'
+    mainClass = 'com.brasil.transparente.processor.BrasilTransparenteProcessorApplication'
 }
 
 tasks.named('test') {
