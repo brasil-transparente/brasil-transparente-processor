@@ -70,7 +70,7 @@ public abstract class ExpenseGenerator {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] rawLine = line.split(delimiter);
-                if (lineLength == 0 || rawLine.length == lineLength) {
+                if (rawLine.length >= lineLength) {
                     List<String> refinedLine = refineLine(rawLine);
                     processLine(poderList, refinedLine);
                 } else {

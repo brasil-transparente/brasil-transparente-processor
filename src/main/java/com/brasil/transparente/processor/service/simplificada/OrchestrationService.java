@@ -15,6 +15,7 @@ public class OrchestrationService {
     private final UniaoService uniaoService;
     private final RioGrandeDoSulService rioGrandeDoSulService;
     private final BahiaService bahiaService;
+    private final AmazonasService amazonasService;
     private final UnidadeFederativaRepository unidadeFederativaRepository;
     private double totalExpenses;
 
@@ -34,7 +35,7 @@ public class OrchestrationService {
     }
 
     public void generateSimplifiedReportRS() {
-        log.info("Gerando estrutura simplificada - RS");
+        log.info("Gerando estrutura simplificada - Rio Grande do Sul");
         totalExpenses = unidadeFederativaRepository.findById(UnidadesFederativasConstants.RS_ID_STRING).get().getTotalValueSpent();
         rioGrandeDoSulService.calculateAndSaveRS1(totalExpenses);
         rioGrandeDoSulService.calculateAndSaveRS2(totalExpenses);
@@ -45,7 +46,7 @@ public class OrchestrationService {
     }
 
     public void generateSimplifiedReportBA() {
-        log.info("Gerando estrutura simplificada - BA");
+        log.info("Gerando estrutura simplificada - Bahia");
         totalExpenses = unidadeFederativaRepository.findById(UnidadesFederativasConstants.BA_ID_STRING).get().getTotalValueSpent();
         bahiaService.calculateAndSaveBA1(totalExpenses);
         bahiaService.calculateAndSaveBA2(totalExpenses);
@@ -55,6 +56,18 @@ public class OrchestrationService {
         bahiaService.calculateAndSaveBA6(totalExpenses);
         bahiaService.calculateAndSaveBA7(totalExpenses);
         bahiaService.calculateAndSaveBAOutros(totalExpenses);
+    }
+
+    public void generateSimplifiedReportAM() {
+        log.info("Gerando estrutura simplificada - Amazonas");
+        totalExpenses = unidadeFederativaRepository.findById(UnidadesFederativasConstants.AM_ID_STRING).get().getTotalValueSpent();
+        amazonasService.calculateAndSaveAM1(totalExpenses);
+        amazonasService.calculateAndSaveAM2(totalExpenses);
+        amazonasService.calculateAndSaveAM3(totalExpenses);
+        amazonasService.calculateAndSaveAM4(totalExpenses);
+        amazonasService.calculateAndSaveAM5(totalExpenses);
+        amazonasService.calculateAndSaveAM6(totalExpenses);
+        amazonasService.calculateAndSaveAMOutros(totalExpenses);
     }
 
 }

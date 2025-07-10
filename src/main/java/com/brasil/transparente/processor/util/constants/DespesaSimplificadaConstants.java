@@ -77,20 +77,32 @@ public class DespesaSimplificadaConstants {
     public static final String TERMO_APOSENTADORIA2 = "pens";
     public static final String TERMO_APOSENTADORIA3 = "previd";
     public static final List<String> INSTITUTO_PREVIDENCIA_RS = List.of("Instituto de Previdência do Estado do Rio Grande do Sul");
-    public static final List<String> SECRETARIA_SAUDE = List.of("Secretaria da Saúde");
-    public static final List<String> SECRETARIA_EDUCACAO = List.of("Secretaria da Educação");
+    public static final List<String> SECRETARIA_SAUDE = List.of(
+            "Secretaria da Saúde",
+            "Secretaria de Estado de Saúde"
+            );
+    public static final List<String> SECRETARIA_EDUCACAO = List.of(
+            "Secretaria da Educação",
+            "Secretaria de Estado de Educação e Desporto"
+            );
     public static final String SEGURANCA = "Segurança";
     public static final List<String> FUNDOS_PREVIDENCIA_BAHIA = List.of(
             "Fundo Financeiro da Previdência Social dos Servidores Públicos do Estado da Bahia",
             "Fundo de Proteção Social dos Policiais Militares e dos Bombeiros Militares do Estado da Bahia"
     );
+    public static final List<String> FUNDO_PREVIDENCIA_AMAZONAS = List.of(
+            "Fundação Fundo Previdenciário do Estado do Amazonas"
+    );
     public static final String DIVIDA_PUBLICA = "Dívida Pública";
     public static final String ENCARGOS_GERAIS = "Encargos Gerais do Estado";
+    public static final String SECRETARIA_ESTADO_FAZENDA = "Secretaria de Estado da Fazenda";
     public static final String INFRAESTRUTURA = "Infraestrutura";
     public static final List<String> SECRETARIAS_SEGURANCA = List.of(
             "Secretaria da Segurança Pública",
             "Secretaria de Sistemas Penal e Socioeducativo",
-            "Secretaria de Administração Penitenciária e Ressocialização"
+            "Secretaria de Administração Penitenciária e Ressocialização",
+            "Secretaria de Estado da Segurança Pública",
+            "Secretaria de Estado de Administração Penitenciária"
     );
     public static final List<String> SECRETARIAS_INFRAESTRUTURA = List.of(
             "Secretaria de Infraestrutura",
