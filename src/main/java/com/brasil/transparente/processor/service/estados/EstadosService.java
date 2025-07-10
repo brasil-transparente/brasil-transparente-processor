@@ -56,7 +56,7 @@ public class EstadosService {
     private void processRioGrandeDoSul(String year) {
         List<Poder> poderList = PoderFactory.criarListaPoderes();
         UnidadeFederativa unidadeFederativa = new UnidadeFederativa(UnidadesFederativasConstants.RS_NAME);
-        rioGrandeDoSulGeneratorService.generateExpensesByMonth(poderList, StandardCharsets.ISO_8859_1, "/Estados/" + UnidadesFederativasConstants.RS_SIGLA + "/", 0, ";", year);
+        rioGrandeDoSulGeneratorService.generateExpensesByMonth(poderList, StandardCharsets.ISO_8859_1, "/Estados/" + UnidadesFederativasConstants.RS_SIGLA + "/", 45, ";", year);
         processState(unidadeFederativa, poderList);
         orchestrationService.generateSimplifiedReportRS();
     }
@@ -72,7 +72,7 @@ public class EstadosService {
     private void processAmazonas(String year) {
         List<Poder> poderList = PoderFactory.criarListaPoderes();
         UnidadeFederativa unidadeFederativa = new UnidadeFederativa(UnidadesFederativasConstants.AM_NAME);
-        amazonasGeneratorService.generateExpenses(poderList, StandardCharsets.UTF_8, "/Estados/" + UnidadesFederativasConstants.BA_SIGLA + "/" + year +".csv", 63, ";");
+        amazonasGeneratorService.generateExpenses(poderList, StandardCharsets.ISO_8859_1, "/Estados/" + UnidadesFederativasConstants.AM_SIGLA + "/" + year +".csv", 40, ";");
         processState(unidadeFederativa, poderList);
         orchestrationService.generateSimplifiedReportAM();
     }
