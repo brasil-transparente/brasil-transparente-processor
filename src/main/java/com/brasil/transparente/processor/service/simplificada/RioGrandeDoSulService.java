@@ -36,10 +36,15 @@ public class RioGrandeDoSulService {
     }
 
     public void calculateAndSaveRS2(double totalExpense) {
-        double specificExpense = elementoDespesaRepository.findbyUnidadeFederativaIdAndMinisterioNameList(
+        double specificExpenseToConsider = elementoDespesaRepository.findbyUnidadeFederativaIdAndMinisterioNameList(
                 UnidadesFederativasConstants.RS_ID_LONG,
                 DespesaSimplificadaConstants.SECRETARIAS_SEGURANCA
         );
+        double specificExpenseToDisconsider = elementoDespesaRepository.findbyUnidadeFederativaIdAndOrgaoNameList(
+                UnidadesFederativasConstants.RS_ID_LONG,
+                DespesaSimplificadaConstants.DETRAN
+        );
+        double specificExpense = specificExpenseToConsider - specificExpenseToDisconsider;
         double percentageOfTotal = calculationService.getPercentageOfTotal(specificExpense, totalExpense);
         DespesaSimplificada despesaSimplificada = new DespesaSimplificada(
                 DespesaSimplificadaConstants.SEGURANCA,

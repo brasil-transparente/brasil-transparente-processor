@@ -52,7 +52,11 @@ public class DespesaSimplificadaConstants {
             "Outros Encargos sobre a Dívida Mobiliária",
             "Outros Encargos sobre a Dívida por Contrato",
             "Obrigações decorrentes de Política Monetária",
-            "Principal da Dívida Contratual Resgatado"
+            "Principal da Dívida Contratual Resgatado",
+            "Amortização da Dívida Interna Contratada",
+            "Principal da Dívida por Contrato Externa",
+            "Juros sobre a Dívida Externa por Contrato",
+            "Encargos sobre a Dívida Externa por Contrato"
     );
     public static final String JUROS_DIVIDA_PUBLICA = "Juros da Dívida Pública";
     public static final String MINISTERIO_EDUCACAO = "Ministério da Educação";
@@ -93,10 +97,17 @@ public class DespesaSimplificadaConstants {
     public static final List<String> FUNDO_PREVIDENCIA_AMAZONAS = List.of(
             "Fundação Fundo Previdenciário do Estado do Amazonas"
     );
+    public static final List<String> FUNDOS_PREVIDENCIA_SAO_PAULO = List.of(
+            "São Paulo Previdência - SPPREV",
+            "Encargos Gerais de Pessoal"
+    );
     public static final String DIVIDA_PUBLICA = "Dívida Pública";
     public static final String ENCARGOS_GERAIS = "Encargos Gerais do Estado";
     public static final String SECRETARIA_ESTADO_FAZENDA = "Secretaria de Estado da Fazenda";
+    public static final String ADMIN_GERAL_ESTADO = "Administração Geral do Estado";
     public static final String INFRAESTRUTURA = "Infraestrutura";
+    public static final List<String> SECRETARIA_TRANSPORTE = List.of("Secretaria dos Transportes Metropolitanos");
+    public static final String TRANSPORTE = "Transporte";
     public static final List<String> SECRETARIAS_SEGURANCA = List.of(
             "Secretaria da Segurança Pública",
             "Secretaria de Sistemas Penal e Socioeducativo",
@@ -104,6 +115,7 @@ public class DespesaSimplificadaConstants {
             "Secretaria de Estado da Segurança Pública",
             "Secretaria de Estado de Administração Penitenciária"
     );
+    public static final List<String> DETRAN = List.of("Departamento Estadual de Trânsito");
     public static final List<String> SECRETARIAS_INFRAESTRUTURA = List.of(
             "Secretaria de Infraestrutura",
             "Secretaria de Desenvolvimento Urbano",

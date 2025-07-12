@@ -45,7 +45,7 @@ public class AmazonasGeneratorService extends ExpenseGenerator {
         MinisterioOrgao mo = new MinisterioOrgao();
         mo.ministerio = ministerio;
         mo.orgao = orgao;
-        reclassifyMinistry(mo);
+        reclassifyMinistryAndOrgan(mo);
         ministerio = mo.ministerio;
         orgao = mo.orgao;
 
@@ -58,7 +58,7 @@ public class AmazonasGeneratorService extends ExpenseGenerator {
         public String orgao;
     }
 
-    private void reclassifyMinistry(MinisterioOrgao mo) {
+    private void reclassifyMinistryAndOrgan(MinisterioOrgao mo) {
         switch (mo.ministerio) {
             case AMConstants.FUNDO_ESPECIAL_DA_DEFENSORIA_PUBLICA_DO_ESTADO_DO_AMAZONAS:
                 mo.ministerio = AMConstants.DEFENSORIA_PUBLICA_DO_ESTADO_DO_AMAZONAS;
@@ -142,7 +142,8 @@ public class AmazonasGeneratorService extends ExpenseGenerator {
                 mo.ministerio = AMConstants.SECRETARIA_DE_ESTADO_DO_MEIO_AMBIENTE;
                 break;
             case AMConstants.FUNDO_ESPECIAL_DA_PROCURADORIA_GERAL_DO_ESTADO:
-                mo.ministerio = AMConstants.PROCURADORIA_GERAL_DO_ESTADO;
+                mo.ministerio = AMConstants.GOVERNADORIA;
+                mo.orgao = AMConstants.GOVERNADORIA;
                 break;
             case AMConstants.PROCURADORIA_GERAL_JUSTICA:
                 mo.ministerio = AMConstants.MINISTERIO_PUBLICO;
