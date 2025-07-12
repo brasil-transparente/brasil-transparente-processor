@@ -184,4 +184,17 @@ public interface ElementoDespesaRepository extends JpaRepository<ElementoDespesa
             @Param("ministerioNameList") List<String> ministerioNameList
     );
 
+    @Query("SELECT SUM(ed.totalValueSpent) FROM ElementoDespesa ed " +
+            "JOIN ed.unidadeGestora ug " +
+            "JOIN ug.orgao org " +
+            "JOIN org.ministerio min " +
+            "JOIN min.poder pod " +
+            "JOIN pod.unidadeFederativa uf " +
+            "WHERE uf.unidadeFederativaId = :unidadeFederativaId " +
+            "AND org.nameOrgao IN :orgaoNameList ")
+    double findbyUnidadeFederativaIdAndOrgaoNameList(
+            @Param("unidadeFederativaId") Long unidadeFederativaId,
+            @Param("orgaoNameList") List<String> orgaoNameList
+    );
+
 }

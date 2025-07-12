@@ -16,6 +16,7 @@ public class OrchestrationService {
     private final RioGrandeDoSulService rioGrandeDoSulService;
     private final BahiaService bahiaService;
     private final AmazonasService amazonasService;
+    private final SaoPauloService saoPauloService;
     private final UnidadeFederativaRepository unidadeFederativaRepository;
     private double totalExpenses;
 
@@ -68,6 +69,19 @@ public class OrchestrationService {
         amazonasService.calculateAndSaveAM5(totalExpenses);
         amazonasService.calculateAndSaveAM6(totalExpenses);
         amazonasService.calculateAndSaveAMOutros(totalExpenses);
+    }
+
+    public void generateSimplifiedReportSP() {
+        log.info("Gerando estrutura simplificada - São Paulo");
+        totalExpenses = unidadeFederativaRepository.findById(UnidadesFederativasConstants.SP_ID_STRING).get().getTotalValueSpent();
+        saoPauloService.calculateAndSaveSP1(totalExpenses);
+        saoPauloService.calculateAndSaveSP2(totalExpenses);
+        saoPauloService.calculateAndSaveSP3(totalExpenses);
+        saoPauloService.calculateAndSaveSP4(totalExpenses);
+        saoPauloService.calculateAndSaveSP5(totalExpenses);
+        saoPauloService.calculateAndSaveSP6(totalExpenses);
+        saoPauloService.calculateAndSaveSP7(totalExpenses);
+        saoPauloService.calculateAndSaveSPOutros(totalExpenses);
     }
 
 }
