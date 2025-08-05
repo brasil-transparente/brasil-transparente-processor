@@ -56,7 +56,9 @@ public class DespesaSimplificadaConstants {
             "Amortização da Dívida Interna Contratada",
             "Principal da Dívida por Contrato Externa",
             "Juros sobre a Dívida Externa por Contrato",
-            "Encargos sobre a Dívida Externa por Contrato"
+            "Encargos sobre a Dívida Externa por Contrato",
+            "ENCARGOS GERAIS DO ESTADO - SEFAZ",
+            "FUNDO ESTADUAL DE EQUILIBRIO FISCAL"
     );
     public static final String JUROS_DIVIDA_PUBLICA = "Juros da Dívida Pública";
     public static final String MINISTERIO_EDUCACAO = "Ministério da Educação";
@@ -83,12 +85,14 @@ public class DespesaSimplificadaConstants {
     public static final List<String> INSTITUTO_PREVIDENCIA_RS = List.of("Instituto de Previdência do Estado do Rio Grande do Sul");
     public static final List<String> SECRETARIA_SAUDE = List.of(
             "Secretaria da Saúde",
-            "Secretaria de Estado de Saúde"
-            );
+            "Secretaria de Estado de Saúde",
+            "SECRETARIA DE ESTADO DA SAUDE"
+    );
     public static final List<String> SECRETARIA_EDUCACAO = List.of(
             "Secretaria da Educação",
-            "Secretaria de Estado de Educação e Desporto"
-            );
+            "Secretaria de Estado de Educação e Desporto",
+            "SECRETARIA DE ESTADO DA EDUCACAO"
+    );
     public static final String SEGURANCA = "Segurança";
     public static final List<String> FUNDOS_PREVIDENCIA_BAHIA = List.of(
             "Fundo Financeiro da Previdência Social dos Servidores Públicos do Estado da Bahia",
@@ -100,6 +104,9 @@ public class DespesaSimplificadaConstants {
     public static final List<String> FUNDOS_PREVIDENCIA_SAO_PAULO = List.of(
             "São Paulo Previdência - SPPREV",
             "Encargos Gerais de Pessoal"
+    );
+    public static final List<String> FUNDO_PREVIDENCIA_PARAIBA = List.of(
+            "PARAIBA PREVIDENCIA - PBPREV"
     );
     public static final String DIVIDA_PUBLICA = "Dívida Pública";
     public static final String ENCARGOS_GERAIS = "Encargos Gerais do Estado";
@@ -113,12 +120,14 @@ public class DespesaSimplificadaConstants {
             "Secretaria de Sistemas Penal e Socioeducativo",
             "Secretaria de Administração Penitenciária e Ressocialização",
             "Secretaria de Estado da Segurança Pública",
-            "Secretaria de Estado de Administração Penitenciária"
+            "Secretaria de Estado de Administração Penitenciária",
+            "SECRETARIA DE ESTADO DA SEGURANCA E DA DEFESA SOCIAL"
     );
     public static final List<String> DETRAN = List.of("Departamento Estadual de Trânsito");
     public static final List<String> SECRETARIAS_INFRAESTRUTURA = List.of(
             "Secretaria de Infraestrutura",
             "Secretaria de Desenvolvimento Urbano",
-            "Secretaria de Infraestrutura Hídrica e Saneamento"
+            "Secretaria de Infraestrutura Hídrica e Saneamento",
+            "SEC DE ESTADO DA INFRAESTRUTURA E DOS RECURSOS HÍDRICOS"
     );
 }

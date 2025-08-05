@@ -7,12 +7,14 @@ public final class UnidadesFederativasConstants {
     public static final Long BA_ID_LONG = 3L;
     public static final Long AM_ID_LONG = 4L;
     public static final Long SP_ID_LONG = 5L;
+    public static final Long PB_ID_LONG = 6L;
     
     public static final String UN_ID_STRING = "1";
     public static final String RS_ID_STRING = "2";
     public static final String BA_ID_STRING = "3";
     public static final String AM_ID_STRING = "4";
     public static final String SP_ID_STRING = "5";
+    public static final String PB_ID_STRING = "6";
 
     public static final String AC_SIGLA = "AC";
     public static final String AL_SIGLA = "AL";
