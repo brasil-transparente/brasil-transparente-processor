@@ -86,11 +86,11 @@ public class ParaibaService {
     public void calculateAndSavePB5(double totalExpenses) {
         double specificExpense = elementoDespesaRepository.findbyUnidadeFederativaIdAndMinisterioNameList(
                 UnidadesFederativasConstants.PB_ID_LONG,
-                DespesaSimplificadaConstants.DESPESAS_DIVIDA_PUBLICA
+                DespesaSimplificadaConstants.SECRETARIAS_INFRAESTRUTURA
         );
         double percentageOfTotal = calculationService.getPercentageOfTotal(specificExpense, totalExpenses);
         DespesaSimplificada despesaSimplificada = new DespesaSimplificada(
-                DespesaSimplificadaConstants.DIVIDA_PUBLICA,
+                DespesaSimplificadaConstants.INFRAESTRUTURA,
                 specificExpense,
                 percentageOfTotal,
                 UnidadesFederativasConstants.PB_ID_LONG
@@ -99,13 +99,16 @@ public class ParaibaService {
     }
 
     public void calculateAndSavePB6(double totalExpenses) {
-        double specificExpense = elementoDespesaRepository.findbyUnidadeFederativaIdAndMinisterioNameList(
+        double specificExpense = elementoDespesaRepository.findByUnidadeFederativaIdAndNamePoderAndTermsNotLike(
                 UnidadesFederativasConstants.PB_ID_LONG,
-                DespesaSimplificadaConstants.SECRETARIAS_INFRAESTRUTURA
+                DespesaSimplificadaConstants.PODER_JUDICIARIO,
+                DespesaSimplificadaConstants.TERMO_APOSENTADORIA1,
+                DespesaSimplificadaConstants.TERMO_APOSENTADORIA2,
+                DespesaSimplificadaConstants.TERMO_APOSENTADORIA3
         );
         double percentageOfTotal = calculationService.getPercentageOfTotal(specificExpense, totalExpenses);
         DespesaSimplificada despesaSimplificada = new DespesaSimplificada(
-                DespesaSimplificadaConstants.INFRAESTRUTURA,
+                DespesaSimplificadaConstants.PODER_JUDICIARIO_ESTADUAL,
                 specificExpense,
                 percentageOfTotal,
                 UnidadesFederativasConstants.PB_ID_LONG
