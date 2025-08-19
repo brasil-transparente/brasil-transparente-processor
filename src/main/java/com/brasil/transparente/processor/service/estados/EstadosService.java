@@ -5,10 +5,7 @@ import com.brasil.transparente.processor.entity.UnidadeFederativa;
 import com.brasil.transparente.processor.repository.UnidadeFederativaRepository;
 import com.brasil.transparente.processor.service.creation.CreateEntityService;
 import com.brasil.transparente.processor.service.creation.ProcessExpensesService;
-import com.brasil.transparente.processor.service.estados.generator.AmazonasGeneratorService;
-import com.brasil.transparente.processor.service.estados.generator.BahiaGeneratorService;
-import com.brasil.transparente.processor.service.estados.generator.RioGrandeDoSulGeneratorService;
-import com.brasil.transparente.processor.service.estados.generator.SaoPauloGeneratorService;
+import com.brasil.transparente.processor.service.estados.generator.*;
 import com.brasil.transparente.processor.service.simplificada.OrchestrationService;
 import com.brasil.transparente.processor.util.NameCorrectorService;
 import com.brasil.transparente.processor.util.PoderFactory;
@@ -34,6 +31,7 @@ public class EstadosService {
     private final BahiaGeneratorService bahiaGeneratorService;
     private final AmazonasGeneratorService amazonasGeneratorService;
     private final SaoPauloGeneratorService saoPauloGeneratorService;
+    private final ParaibaGeneratorService paraibaGeneratorService;
     private final String ESTADOS_PATH = "/Estados/";
 
     public void generateStates(String year) {
@@ -41,6 +39,7 @@ public class EstadosService {
         processBahia(year);
         processAmazonas(year);
         processSaoPaulo(year);
+        processParaiba(year);
     }
 
     private void processState(UnidadeFederativa unidadeFederativa, List<Poder> poderList) {
@@ -89,4 +88,19 @@ public class EstadosService {
         orchestrationService.generateSimplifiedReportSP();
     }
 
+    private void processParaiba(String year) {
+        List<Poder> poderList = PoderFactory.criarListaPoderes();
+        UnidadeFederativa unidadeFederativa = new UnidadeFederativa(UnidadesFederativasConstants.PB_NAME);
+
+        paraibaGeneratorService.generateExpenses(
+                poderList,
+                StandardCharsets.UTF_8,
+                ESTADOS_PATH + UnidadesFederativasConstants.PB_SIGLA + "/" + year +".csv",
+                19,
+                ";"
+        );
+
+        processState(unidadeFederativa, poderList);
+        orchestrationService.generateSimplifiedReportPB();
+    }
 }

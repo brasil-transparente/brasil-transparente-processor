@@ -17,6 +17,7 @@ public class OrchestrationService {
     private final BahiaService bahiaService;
     private final AmazonasService amazonasService;
     private final SaoPauloService saoPauloService;
+    private final ParaibaService paraibaService;
     private final UnidadeFederativaRepository unidadeFederativaRepository;
     private double totalExpenses;
 
@@ -82,6 +83,18 @@ public class OrchestrationService {
         saoPauloService.calculateAndSaveSP6(totalExpenses);
         saoPauloService.calculateAndSaveSP7(totalExpenses);
         saoPauloService.calculateAndSaveSPOutros(totalExpenses);
+    }
+
+    public void generateSimplifiedReportPB() {
+        log.info("Gerando estrutura simplificada - Paraíba");
+        totalExpenses = unidadeFederativaRepository.findById(UnidadesFederativasConstants.PB_ID_STRING).get().getTotalValueSpent();
+        paraibaService.calculateAndSavePB1(totalExpenses);
+        paraibaService.calculateAndSavePB2(totalExpenses);
+        paraibaService.calculateAndSavePB3(totalExpenses);
+        paraibaService.calculateAndSavePB4(totalExpenses);
+        paraibaService.calculateAndSavePB5(totalExpenses);
+        paraibaService.calculateAndSavePB6(totalExpenses);
+        paraibaService.calculateAndSavePBOutros(totalExpenses);
     }
 
 }
