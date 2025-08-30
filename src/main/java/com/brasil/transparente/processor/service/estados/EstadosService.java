@@ -6,7 +6,7 @@ import com.brasil.transparente.processor.repository.UnidadeFederativaRepository;
 import com.brasil.transparente.processor.service.creation.CreateEntityService;
 import com.brasil.transparente.processor.service.creation.ProcessExpensesService;
 import com.brasil.transparente.processor.service.estados.generator.*;
-import com.brasil.transparente.processor.service.simplificada.OrchestrationService;
+import com.brasil.transparente.processor.service.simplificada.OrchestrationSimplificadaService;
 import com.brasil.transparente.processor.util.NameCorrectorService;
 import com.brasil.transparente.processor.util.PoderFactory;
 import com.brasil.transparente.processor.util.constants.UnidadesFederativasConstants;
@@ -26,7 +26,7 @@ public class EstadosService {
     private final CreateEntityService createEntityService;
     private final NameCorrectorService nameCorrectorService;
     private final UnidadeFederativaRepository unidadeFederativaRepository;
-    private final OrchestrationService orchestrationService;
+    private final OrchestrationSimplificadaService orchestrationService;
     private final RioGrandeDoSulGeneratorService rioGrandeDoSulGeneratorService;
     private final BahiaGeneratorService bahiaGeneratorService;
     private final AmazonasGeneratorService amazonasGeneratorService;

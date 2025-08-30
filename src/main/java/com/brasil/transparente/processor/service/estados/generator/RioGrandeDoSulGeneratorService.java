@@ -39,7 +39,8 @@ public class RioGrandeDoSulGeneratorService extends ExpenseGenerator {
         double valorPagoFinal = Double.parseDouble(valorString);
 
         if (!Objects.equals(tipoGasto, Constants.PAGAMENTO)
-                || Objects.equals(valorPagoFinal, Constants.ZERO_DOUBLE)) {
+                || Objects.equals(valorPagoFinal, Constants.ZERO_DOUBLE)
+                || Constants.PRINCIPAL_DIVIDA_AMORTIZACAO.contains(elementoDespesa)) {
             return;
         }
 

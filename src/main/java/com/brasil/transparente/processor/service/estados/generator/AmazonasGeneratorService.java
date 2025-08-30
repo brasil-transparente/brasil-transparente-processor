@@ -38,7 +38,9 @@ public class AmazonasGeneratorService extends ExpenseGenerator {
         String valorPagoRestosPagar = refinedLine.get(39).replace(",", ".");
         double valorPagoFinal = Double.parseDouble(valorPago) + Double.parseDouble(valorPagoRestosPagar);
 
-        if (Objects.equals(valorPagoFinal, Constants.ZERO_DOUBLE) || Objects.equals(transferenciaMunicipios, Constants.TRANSFERENCIA_MUNICIPIOS)) {
+        if (Objects.equals(valorPagoFinal, Constants.ZERO_DOUBLE)
+                || Objects.equals(transferenciaMunicipios, Constants.TRANSFERENCIA_MUNICIPIOS)
+                || Constants.PRINCIPAL_DIVIDA_AMORTIZACAO.contains(elementoDespesa)) {
             return;
         }
 

@@ -32,7 +32,9 @@ public class SaoPauloGeneratorService extends ExpenseGenerator {
         String valorPagoRestosPagar = refinedLine.get(10).replace(".", "").replace(",", ".");
         double valorPagoFinal = Double.parseDouble(valorPago) + Double.parseDouble(valorPagoRestosPagar);
 
-        if (Objects.equals(valorPagoFinal, Constants.ZERO_DOUBLE) || SPConstants.TRANSFERENCIAS_MUNICIPIOS.contains(elementoDespesa)) {
+        if (Objects.equals(valorPagoFinal, Constants.ZERO_DOUBLE)
+                || SPConstants.TRANSFERENCIAS_MUNICIPIOS.contains(elementoDespesa)
+                || Constants.PRINCIPAL_DIVIDA_AMORTIZACAO.contains(elementoDespesa)) {
             return;
         }
 

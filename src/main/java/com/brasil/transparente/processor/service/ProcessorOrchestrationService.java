@@ -6,7 +6,7 @@ import com.brasil.transparente.processor.repository.UnidadeFederativaRepository;
 import com.brasil.transparente.processor.service.creation.CreateEntityService;
 import com.brasil.transparente.processor.service.creation.ProcessExpensesService;
 import com.brasil.transparente.processor.service.estados.EstadosService;
-import com.brasil.transparente.processor.service.simplificada.OrchestrationService;
+import com.brasil.transparente.processor.service.simplificada.OrchestrationSimplificadaService;
 import com.brasil.transparente.processor.service.executivo.ExecutivoService;
 import com.brasil.transparente.processor.service.judiciario.JudiciarioService;
 import com.brasil.transparente.processor.service.legislativo.LegislativoService;
@@ -27,7 +27,7 @@ public class ProcessorOrchestrationService {
     private final ExecutivoService executivoService;
     private final JudiciarioService judiciarioService;
     private final LegislativoService legislativoGeneratorService;
-    private final OrchestrationService orchestrationService;
+    private final OrchestrationSimplificadaService orchestrationService;
     private final OrgaosAutonomosService orgaosAutonomosGeneratorService;
     private final CreateEntityService createEntityService;
     private final NameCorrectorService nameCorrectorService;

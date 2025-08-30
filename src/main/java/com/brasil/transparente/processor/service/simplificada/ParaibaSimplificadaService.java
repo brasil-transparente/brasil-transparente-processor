@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class ParaibaService {
+public class ParaibaSimplificadaService {
 
     private final CalculationService calculationService;
     private final ElementoDespesaRepository elementoDespesaRepository;

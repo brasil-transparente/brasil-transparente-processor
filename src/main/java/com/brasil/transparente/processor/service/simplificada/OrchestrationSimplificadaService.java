@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class OrchestrationService {
+public class OrchestrationSimplificadaService {
 
 
-    private final UniaoService uniaoService;
-    private final RioGrandeDoSulService rioGrandeDoSulService;
-    private final BahiaService bahiaService;
-    private final AmazonasService amazonasService;
-    private final SaoPauloService saoPauloService;
-    private final ParaibaService paraibaService;
+    private final UniaoSimplificadaService uniaoService;
+    private final RioGrandeDoSulSimplificadaService rioGrandeDoSulService;
+    private final BahiaSimplificadaService bahiaService;
+    private final AmazonasSimplificadaService amazonasService;
+    private final SaoPauloSimplificadaService saoPauloService;
+    private final ParaibaSimplificadaService paraibaService;
     private final UnidadeFederativaRepository unidadeFederativaRepository;
     private double totalExpenses;
 
@@ -56,7 +56,6 @@ public class OrchestrationService {
         bahiaService.calculateAndSaveBA4(totalExpenses);
         bahiaService.calculateAndSaveBA5(totalExpenses);
         bahiaService.calculateAndSaveBA6(totalExpenses);
-        bahiaService.calculateAndSaveBA7(totalExpenses);
         bahiaService.calculateAndSaveBAOutros(totalExpenses);
     }
 
@@ -68,7 +67,6 @@ public class OrchestrationService {
         amazonasService.calculateAndSaveAM3(totalExpenses);
         amazonasService.calculateAndSaveAM4(totalExpenses);
         amazonasService.calculateAndSaveAM5(totalExpenses);
-        amazonasService.calculateAndSaveAM6(totalExpenses);
         amazonasService.calculateAndSaveAMOutros(totalExpenses);
     }
 
