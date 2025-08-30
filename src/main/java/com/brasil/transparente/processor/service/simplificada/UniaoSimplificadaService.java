@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class UniaoService {
+public class UniaoSimplificadaService {
 
     private final CalculationService calculationService;
     private final ElementoDespesaRepository elementoDespesaRepository;

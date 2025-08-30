@@ -37,7 +37,8 @@ public class ParaibaGeneratorService extends ExpenseGenerator {
             String valorPagoString = refinedLine.get(17);
             double valorPagoFinal = Double.parseDouble(valorPagoString);
 
-            if (Objects.equals(valorPagoFinal, Constants.ZERO_DOUBLE)) {
+            if (Objects.equals(valorPagoFinal, Constants.ZERO_DOUBLE)
+                    || Constants.PRINCIPAL_DIVIDA_AMORTIZACAO.contains(elementoDespesa)) {
                 return;
             }
 

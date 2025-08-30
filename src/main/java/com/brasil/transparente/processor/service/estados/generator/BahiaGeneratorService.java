@@ -36,7 +36,8 @@ public class BahiaGeneratorService extends ExpenseGenerator {
         valorString = valorString.replace(",", ".");
         double valorPagoFinal = Double.parseDouble(valorString);
 
-        if (Objects.equals(valorPagoFinal, Constants.ZERO_DOUBLE)) {
+        if (Objects.equals(valorPagoFinal, Constants.ZERO_DOUBLE)
+                || Constants.PRINCIPAL_DIVIDA_AMORTIZACAO.contains(elementoDespesa)) {
             return;
         }
 

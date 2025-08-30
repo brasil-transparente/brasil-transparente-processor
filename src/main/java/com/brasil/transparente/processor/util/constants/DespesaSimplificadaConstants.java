@@ -52,9 +52,6 @@ public class DespesaSimplificadaConstants {
             "Outros Encargos sobre a Dívida Mobiliária",
             "Outros Encargos sobre a Dívida por Contrato",
             "Obrigações decorrentes de Política Monetária",
-            "Principal da Dívida Contratual Resgatado",
-            "Amortização da Dívida Interna Contratada",
-            "Principal da Dívida por Contrato Externa",
             "Juros sobre a Dívida Externa por Contrato",
             "Encargos sobre a Dívida Externa por Contrato"
     );
@@ -106,9 +103,7 @@ public class DespesaSimplificadaConstants {
     public static final List<String> FUNDO_PREVIDENCIA_PARAIBA = List.of(
             "Paraíba Previdência - PBPREV"
     );
-    public static final String DIVIDA_PUBLICA = "Dívida Pública";
-    public static final String ENCARGOS_GERAIS = "Encargos Gerais do Estado";
-    public static final String SECRETARIA_ESTADO_FAZENDA = "Secretaria de Estado da Fazenda";
+    public static final String DIVIDA_PUBLICA = "Juros da Dívida";
     public static final String ADMIN_GERAL_ESTADO = "Administração Geral do Estado";
     public static final String INFRAESTRUTURA = "Infraestrutura";
     public static final List<String> SECRETARIA_TRANSPORTE = List.of("Secretaria dos Transportes Metropolitanos");
