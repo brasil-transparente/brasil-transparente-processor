@@ -111,4 +111,20 @@
         </sql>
     </changeSet>
 
+    <changeSet id="008" author="dev">
+        <sql>
+            CREATE TABLE renuncia_fiscal (
+               renuncia_fiscal_id bigint NOT NULL AUTO_INCREMENT,
+               ano VARCHAR(4) DEFAULT NULL,
+               cnpj VARCHAR(20) DEFAULT NULL,
+               beneficiario VARCHAR(255) DEFAULT NULL,
+               valor_renunciado double NOT NULL,
+               unidade_federativa_id bigint DEFAULT NULL,
+               PRIMARY KEY (renuncia_fiscal_id),
+               KEY unidade_federativa_id (unidade_federativa_id),
+               CONSTRAINT renuncia_fiscal_ibfk_1 FOREIGN KEY (unidade_federativa_id) REFERENCES unidade_federativa (unidade_federativa_id)
+            );
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
