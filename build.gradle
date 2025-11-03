@@ -38,7 +38,7 @@ dependencies {
     implementation 'org.slf4j:slf4j-api:2.0.17'
 
     // MySQL Connector
-    implementation 'com.mysql:mysql-connector-j:9.4.0'
+    implementation 'com.mysql:mysql-connector-j:9.5.0'
 
     // Lombok
     implementation 'org.projectlombok:lombok'
