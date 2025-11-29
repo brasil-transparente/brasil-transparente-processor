@@ -20,10 +20,6 @@ public class UnidadeFederativa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long unidadeFederativaId;
 
-    @OneToMany(mappedBy = "unidadeFederativa", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private List<RenunciaFiscal> listRenunciaFiscal;
-
     private String nameUnidadeFederativa;
 
     private double totalValueSpent;
@@ -35,7 +31,6 @@ public class UnidadeFederativa {
     public UnidadeFederativa(String nameUnidadeFederativa) {
         this.nameUnidadeFederativa = nameUnidadeFederativa;
         this.listPoder = new ArrayList<>();
-        this.listRenunciaFiscal = new ArrayList<>();
         this.totalValueSpent = 0.0;
     }
 
