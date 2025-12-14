@@ -1,13 +1,11 @@
 package com.brasil.transparente.processor.service;
 
 import com.brasil.transparente.processor.entity.Poder;
-import com.brasil.transparente.processor.entity.RenunciaFiscal;
 import com.brasil.transparente.processor.entity.UnidadeFederativa;
 import com.brasil.transparente.processor.repository.UnidadeFederativaRepository;
 import com.brasil.transparente.processor.service.creation.CreateEntityService;
 import com.brasil.transparente.processor.service.creation.ProcessExpensesService;
 import com.brasil.transparente.processor.service.estados.EstadosService;
-import com.brasil.transparente.processor.service.executivo.generator.RenunciaFiscalGeneratorService;
 import com.brasil.transparente.processor.service.simplificada.OrchestrationSimplificadaService;
 import com.brasil.transparente.processor.service.executivo.ExecutivoService;
 import com.brasil.transparente.processor.service.judiciario.JudiciarioService;
@@ -36,7 +34,6 @@ public class ProcessorOrchestrationService {
     private final UnidadeFederativaRepository unidadeFederativaRepository;
     private final ProcessExpensesService processExpensesService;
     private final EstadosService estadosService;
-    private final RenunciaFiscalGeneratorService renunciaFiscalGeneratorService;
 
     private static final String UNIAO_FEDERAL = "União Federal";
     List<Poder> poderList = new ArrayList<>();
@@ -44,6 +41,7 @@ public class ProcessorOrchestrationService {
     public void generateCompleteReportService(String year) {
         log.info("[INICIANDO]");
         generateUniaoReport(year);
+        generateStatesReport(year);
         log.info("[FINALIZADO]");
     }
 
@@ -51,7 +49,6 @@ public class ProcessorOrchestrationService {
         log.info("Iniciando - União");
         UnidadeFederativa unidadeFederativa = new UnidadeFederativa(UNIAO_FEDERAL);
         generateUniaoBranches(year);
-        renunciaFiscalGeneratorService.generateRenunciasFiscais(unidadeFederativa, year);
         cleanUpDataForDatabase(unidadeFederativa);
         log.info("Salvando no banco de dados - União");
         unidadeFederativaRepository.save(unidadeFederativa);
