@@ -41,7 +41,7 @@ public class ProcessorOrchestrationService {
     public void generateCompleteReportService(String year) {
         log.info("[INICIANDO]");
         generateUniaoReport(year);
-        generateStatesReport(year);
+        //generateStatesReport(year);
         log.info("[FINALIZADO]");
     }
 

@@ -12,8 +12,9 @@ public class ProcessorController {
 
     private final ProcessorOrchestrationService processorOrchestrationService;
 
-    @PostMapping("/processYear")
-    public void processYearAndSaveOnDatabase(@RequestParam String year) {
+    @PostMapping("/processExpense")
+    public void processExpenseByYear(@RequestParam String year) {
         processorOrchestrationService.generateCompleteReportService(year);
     }
+
 }

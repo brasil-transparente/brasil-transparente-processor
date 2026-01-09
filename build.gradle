@@ -3,7 +3,7 @@ import java.text.SimpleDateFormat
 plugins {
     id 'java'
     id 'application'
-    id 'org.springframework.boot' version '3.5.5'
+    id 'org.springframework.boot' version '4.0.1'
     id 'io.spring.dependency-management' version '1.1.7'
 }
 
@@ -20,8 +20,9 @@ version = getVersionName()
 println "🛠️ Building version: ${project.version}"
 
 java {
-    sourceCompatibility = '21'
-    targetCompatibility = '21'
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
 }
 
 repositories {
@@ -34,11 +35,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    // Logging
-    implementation 'org.slf4j:slf4j-api:2.0.17'
-
     // MySQL Connector
     implementation 'com.mysql:mysql-connector-j:9.5.0'
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
 
     // Lombok
     implementation 'org.projectlombok:lombok'
@@ -47,8 +47,6 @@ dependencies {
     // Liquibase
     implementation 'org.liquibase:liquibase-core'
 
-    // JUnit
-    testImplementation 'org.junit.jupiter:junit-jupiter:6.0.1'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
