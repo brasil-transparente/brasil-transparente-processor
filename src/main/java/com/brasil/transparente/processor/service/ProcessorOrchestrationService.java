@@ -41,7 +41,7 @@ public class ProcessorOrchestrationService {
     public void generateCompleteReportService(String year) {
         log.info("[INICIANDO]");
         generateUniaoReport(year);
-        generateStatesReport(year);
+        //generateStatesReport(year); // Descontinuado
         log.info("[FINALIZADO]");
     }
 
@@ -57,10 +57,10 @@ public class ProcessorOrchestrationService {
     }
 
     private void generateUniaoBranches(String year) {
-        poderList.add(executivoService.generateExecutiveBranch(year));
-        poderList.add(judiciarioService.generateJudiciaryBranch(year));
-        poderList.add(legislativoGeneratorService.generateLegislativeBranch());
-        poderList.add(orgaosAutonomosGeneratorService.generateIndependentOrgansBranch(year));
+        poderList.add(executivoService.generateExecutivoBranch(year));
+        poderList.add(judiciarioService.generateJudiciarioBranch(year));
+        poderList.add(legislativoGeneratorService.generateLegislativoBranch(year));
+        poderList.add(orgaosAutonomosGeneratorService.generateOrgaoIndependentesBranch(year));
     }
 
     private void cleanUpDataForDatabase(UnidadeFederativa unidadeFederativa) {

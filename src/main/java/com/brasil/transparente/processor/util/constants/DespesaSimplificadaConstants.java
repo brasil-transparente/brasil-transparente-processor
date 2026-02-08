@@ -46,6 +46,7 @@ public class DespesaSimplificadaConstants {
     public static final String FRGPS = "Fundo do Regime Geral da Previdência Social";
     public static final String APOSENTADORIAS_PENSOES = "Aposentadorias e Pensões";
     public static final String MINISTERIO_FAZENDA = "Ministério da Fazenda";
+    public static final String MINISTERIO_TRABALHO_EMPREGO = "Ministério do Trabalho e Emprego";
     public static final List<String> DESPESAS_DIVIDA_PUBLICA = List.of(
             "Juros, Deságios e Descontos da Dívida Mobiliária",
             "Juros sobre a Dívida por Contrato",
@@ -65,13 +66,12 @@ public class DespesaSimplificadaConstants {
             "Auxílios Financeiros a Pessoa Física",
             "Auxílios"
     );
-    public static final String TRANSFERENCIA_RENDA = "Programas de Transferência de Renda*";
+    public static final String TRANSFERENCIA_RENDA = "Programas de Transferência de Renda";
     public static final String MINISTERIO_DEFESA = "Ministério da Defesa";
     public static final String PODER_JUDICIARIO = "Poder Judiciário";
     public static final String PODER_JUDICIARIO_FEDERAL = "Poder Judiciário Federal";
     public static final String PODER_JUDICIARIO_ESTADUAL = "Poder Judiciário Estadual";
     public static final String DEFESA = "Defesa";
-    public static final String BENEFICIOS_TRABALHISTAS = "Benefícios Trabalhistas**";
     public static final String SEGURO_DESEMPREGO_ABONO_SALARIAL = "Seguro Desemprego e Abono Salarial";
     public static final String OUTROS = "Outros";
     public static final String TERMO_APOSENTADORIA1 = "aposent";

@@ -18,9 +18,11 @@ public interface ElementoDespesaRepository extends JpaRepository<ElementoDespesa
             "JOIN mini.poder pod " +
             "JOIN pod.unidadeFederativa uf " +
             "WHERE ed.nameElementoDespesa = :nameElementoDespesa " +
+            "AND mini.nameMinisterio = :nameMinisterio " +
             "AND uf.unidadeFederativaId = :unidadeFederativaId")
-    double findByNameElementoDespesaAndUnidadeFederativa(
+    double findByNameElementoDespesaAndMinisterioAndUnidadeFederativa(
             @Param("nameElementoDespesa") String nameElementoDespesa,
+            @Param("nameMinisterio") String nameMinisterio,
             @Param("unidadeFederativaId") Long unidadeFederativaId
     );
 

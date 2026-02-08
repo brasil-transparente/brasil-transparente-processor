@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.sql.DataSource;
 
-// essa classe executa antes da execução dos changelogs
 @Configuration
 public class DatabaseConfig {
 
