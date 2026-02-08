@@ -23,13 +23,13 @@ public class SenadoFederalGeneratorService extends ExpenseGenerator {
 
     @Override
     protected void processLine(List<Poder> poderList, List<String> refinedLine) {
-        String elementoDespesa = refinedLine.get(0);
-        String valorPagoString = refinedLine.get(1);
-        String valorRestorPagarString = refinedLine.get(2);
+        String elementoDespesa = refinedLine.get(2); // 2024 = 0
+        String valorPagoString = refinedLine.get(0); // 2024 = 1
+        String valorRestosPagarString = refinedLine.get(1);
         valorPagoString = valorPagoString.replace(",", "");
-        valorRestorPagarString = valorRestorPagarString.replace(",", "");
+        valorRestosPagarString = valorRestosPagarString.replace(",", "");
         double valorPago = Double.parseDouble(valorPagoString);
-        double valorRestosPagar = Double.parseDouble(valorRestorPagarString);
+        double valorRestosPagar = Double.parseDouble(valorRestosPagarString);
         double valorPagoFinal = valorPago + valorRestosPagar;
 
         if (Objects.equals(valorPagoFinal, Constants.ZERO_DOUBLE)) {

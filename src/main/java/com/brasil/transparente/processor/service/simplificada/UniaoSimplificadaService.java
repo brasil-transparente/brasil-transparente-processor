@@ -126,12 +126,13 @@ public class UniaoSimplificadaService {
     }
 
     public void calculateAndSaveUniao8(double totalExpense) {
-        double specificExpense = elementoDespesaRepository.findByNameElementoDespesaAndUnidadeFederativa(
+        double specificExpense = elementoDespesaRepository.findByNameElementoDespesaAndMinisterioAndUnidadeFederativa(
                 DespesaSimplificadaConstants.SEGURO_DESEMPREGO_ABONO_SALARIAL,
+                DespesaSimplificadaConstants.MINISTERIO_TRABALHO_EMPREGO,
                 UnidadesFederativasConstants.UN_ID_LONG);
         double percentageOfTotal = calculationService.getPercentageOfTotal(specificExpense, totalExpense);
         DespesaSimplificada despesaSimplificada = new DespesaSimplificada(
-                DespesaSimplificadaConstants.BENEFICIOS_TRABALHISTAS,
+                DespesaSimplificadaConstants.SEGURO_DESEMPREGO_ABONO_SALARIAL,
                 specificExpense,
                 percentageOfTotal,
                 UnidadesFederativasConstants.UN_ID_LONG

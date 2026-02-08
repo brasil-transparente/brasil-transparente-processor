@@ -5,6 +5,7 @@ import com.brasil.transparente.processor.service.ExpenseGenerator;
 import com.brasil.transparente.processor.service.creation.CreateEntityService;
 import com.brasil.transparente.processor.service.creation.ProcessExpensesService;
 import com.brasil.transparente.processor.util.constants.Constants;
+import com.brasil.transparente.processor.util.CurrencyNormalizer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +28,7 @@ public class SpySupremoTribunalFederalGeneratorService extends ExpenseGenerator 
     protected void processLine(List<Poder> poderList, List<String> refinedLine) {
         String planoOrcamentario = refinedLine.get(4);
         String valorString = refinedLine.get(7);
-        valorString = valorString.replace("R$", "");
-        double valorPagoFinal = Double.parseDouble(valorString);
+        double valorPagoFinal = CurrencyNormalizer.normalizeCurrencyValue(valorString);
 
         if (!Objects.equals(planoOrcamentario,SENTENCAS_JUDICIAIS) || Objects.equals(valorPagoFinal, Constants.ZERO_DOUBLE)) {
             return;

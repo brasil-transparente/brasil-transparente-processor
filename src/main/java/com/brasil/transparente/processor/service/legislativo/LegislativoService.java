@@ -23,10 +23,10 @@ public class LegislativoService {
     private static final String LEGISLATIVO = "Poder Legislativo";
     List<Poder> listPoder = List.of(new Poder(LEGISLATIVO));
 
-    public Poder generateLegislativeBranch() {
+    public Poder generateLegislativoBranch(String year) {
         log.info("Iniciando - Poder Legislativo");
-        camaraDeputadosGeneratorService.generateExpenses(listPoder, StandardCharsets.UTF_8, "/Legislativo/Camara Deputados.csv",2, "\t");
-        senadoFederalGeneratorService.generateExpenses(listPoder, StandardCharsets.UTF_8, "/Legislativo/Senado Federal.csv",3, "\t");
+        camaraDeputadosGeneratorService.generateExpenses(listPoder, StandardCharsets.UTF_8, "/Legislativo/" + year + "/Camara Deputados.csv",2, ";"); // 2025 alterou delimitador de "\t" para ";"
+        senadoFederalGeneratorService.generateExpenses(listPoder, StandardCharsets.ISO_8859_1, "/Legislativo/" + year + "/Senado Federal.csv",3, ";"); // 2025 alterou delimitador de "," para ";"
         processExpensesService.aggregateAllPowerSpending(listPoder.getFirst());
         log.info("Finalizado - Poder Legislativo");
         return listPoder.getFirst();

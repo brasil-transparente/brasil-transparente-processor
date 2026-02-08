@@ -32,15 +32,15 @@ public class OrgaosAutonomosService {
     private static final String ESCOLA_SUPERIOR_MINISTERIO_PUBLICO_UNIAO = "Escola Superior do Ministério Público da União";
     private static final String MINISTERIO_PUBLICO_PATH = "/Orgaos Autonomos/Ministerio Publico/";
 
-    public Poder generateIndependentOrgansBranch(String year) {
+    public Poder generateOrgaoIndependentesBranch(String year) {
         log.info("Iniciando - Orgãos Autônomos");
-        tribunalDeContasGeneratorService.generateExpensesByMonth(poderList, StandardCharsets.UTF_8, "/Orgaos Autonomos/Tribunal de Contas da Uniao/",14, ";", year);
-        defensoriaPublicaGeneratorService.generateExpenses(poderList, StandardCharsets.UTF_8, "/Orgaos Autonomos/Defensoria Publica da Uniao/" + year + ".csv",2, ";");
-        ministerioPublicoFederalGeneratorService.generateExpenses(poderList, StandardCharsets.UTF_8, MINISTERIO_PUBLICO_PATH + MINISTERIO_PUBLICO_FEDERAL + "/" + year + ".csv",2, ";");
-        ministerioPublicoDFGeneratorService.generateExpenses(poderList, StandardCharsets.UTF_8, MINISTERIO_PUBLICO_PATH + MINISTERIO_PUBLICO_TRABALHO + "/" + year + ".csv",2, ";");
-        ministerioPublicoMilitarGeneratorService.generateExpenses(poderList, StandardCharsets.UTF_8, MINISTERIO_PUBLICO_PATH + MINISTERIO_PUBLICO_MILITAR + "/" + year + ".csv",2, ";");
-        ministerioPublicoTrabalhoGeneratorService.generateExpenses(poderList, StandardCharsets.UTF_8, MINISTERIO_PUBLICO_PATH + MINISTERIO_PUBLICO_DF_TERRITORIOS + "/" + year + ".csv",2, ";");
-        escolaMinisterioPublicoGeneratorService.generateExpenses(poderList, StandardCharsets.UTF_8, MINISTERIO_PUBLICO_PATH + ESCOLA_SUPERIOR_MINISTERIO_PUBLICO_UNIAO + "/" + year + ".csv",2, ";");
+        tribunalDeContasGeneratorService.generateExpensesByMonth(poderList, StandardCharsets.UTF_8, "/Orgaos Autonomos/Tribunal de Contas da Uniao/" + year + "/",15, ";", year); // Mudou de 2024 - Total de linhas foi de 14 para 15
+        defensoriaPublicaGeneratorService.generateExpenses(poderList, StandardCharsets.UTF_8, "/Orgaos Autonomos/Defensoria Publica da Uniao/" + year + "/" + year + ".csv",2, ";");
+        ministerioPublicoFederalGeneratorService.generateExpenses(poderList, StandardCharsets.UTF_8, MINISTERIO_PUBLICO_PATH + MINISTERIO_PUBLICO_FEDERAL + "/" + year + "/" + year + ".csv",2, ";");
+        ministerioPublicoDFGeneratorService.generateExpenses(poderList, StandardCharsets.UTF_8, MINISTERIO_PUBLICO_PATH + MINISTERIO_PUBLICO_TRABALHO + "/" + year + "/" + year + ".csv",2, ";");
+        ministerioPublicoMilitarGeneratorService.generateExpenses(poderList, StandardCharsets.UTF_8, MINISTERIO_PUBLICO_PATH + MINISTERIO_PUBLICO_MILITAR + "/" + year + "/" + year + ".csv",2, ";");
+        ministerioPublicoTrabalhoGeneratorService.generateExpenses(poderList, StandardCharsets.UTF_8, MINISTERIO_PUBLICO_PATH + MINISTERIO_PUBLICO_DF_TERRITORIOS + "/" + year + "/" + year + ".csv",2, ";");
+        escolaMinisterioPublicoGeneratorService.generateExpenses(poderList, StandardCharsets.UTF_8, MINISTERIO_PUBLICO_PATH + ESCOLA_SUPERIOR_MINISTERIO_PUBLICO_UNIAO + "/" + year + "/" + year + ".csv",2, ";");
         processExpensesService.aggregateAllPowerSpending(poderList.getFirst());
         log.info("Finalizado - Órgãos Autônomos");
         return poderList.getFirst();
