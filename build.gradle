@@ -44,9 +44,6 @@ dependencies {
     implementation 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
-    // Liquibase
-    implementation 'org.liquibase:liquibase-core'
-
     // JUnit
     testImplementation 'org.junit.jupiter:junit-jupiter:6.0.3'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

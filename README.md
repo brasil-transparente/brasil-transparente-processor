@@ -44,8 +44,8 @@ https://discord.gg/sQbf3bSzt4
 [![AGPL-3.0](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 Este projeto está licenciado sob os termos da **GNU Affero General Public License v3.0** (AGPL-3.0).
-- ✅ Liberdade para usar e modificar.
-- 🔁 Exige compartilhamento das modificações.
-- 🌍 Código-fonte deve ser disponibilizado para usuários.
+- Liberdade para usar e modificar.
+- Exige compartilhamento das modificações.
+- Código-fonte deve ser disponibilizado para usuários.
 
 Consulte o arquivo LICENSE.md para o texto completo da licença.
