@@ -1,7 +1,7 @@
 package com.brasil.transparente.processor.util;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
