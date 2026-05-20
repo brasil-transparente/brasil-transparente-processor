@@ -35,7 +35,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
     // Logging
-    implementation 'org.slf4j:slf4j-api:2.0.17'
+    implementation 'org.slf4j:slf4j-api:2.0.18'
 
     // MySQL Connector
     implementation 'com.mysql:mysql-connector-j:9.6.0'
