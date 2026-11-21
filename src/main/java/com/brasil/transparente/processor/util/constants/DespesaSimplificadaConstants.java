@@ -70,58 +70,7 @@ public class DespesaSimplificadaConstants {
     public static final String MINISTERIO_DEFESA = "Ministério da Defesa";
     public static final String PODER_JUDICIARIO = "Poder Judiciário";
     public static final String PODER_JUDICIARIO_FEDERAL = "Poder Judiciário Federal";
-    public static final String PODER_JUDICIARIO_ESTADUAL = "Poder Judiciário Estadual";
     public static final String DEFESA = "Defesa";
     public static final String SEGURO_DESEMPREGO_ABONO_SALARIAL = "Seguro Desemprego e Abono Salarial";
     public static final String OUTROS = "Outros";
-    public static final String TERMO_APOSENTADORIA1 = "aposent";
-    public static final String TERMO_APOSENTADORIA2 = "pens";
-    public static final String TERMO_APOSENTADORIA3 = "previd";
-    public static final List<String> INSTITUTO_PREVIDENCIA_RS = List.of("Instituto de Previdência do Estado do Rio Grande do Sul");
-    public static final List<String> SECRETARIA_SAUDE = List.of(
-            "Secretaria da Saúde",
-            "Secretaria de Estado de Saúde",
-            "Secretaria de Estado da Saúde"
-    );
-    public static final List<String> SECRETARIA_EDUCACAO = List.of(
-            "Secretaria da Educação",
-            "Secretaria de Estado de Educação e Desporto",
-            "Secretaria de Estado da Educação"
-    );
-    public static final String SEGURANCA = "Segurança";
-    public static final List<String> FUNDOS_PREVIDENCIA_BAHIA = List.of(
-            "Fundo Financeiro da Previdência Social dos Servidores Públicos do Estado da Bahia",
-            "Fundo de Proteção Social dos Policiais Militares e dos Bombeiros Militares do Estado da Bahia"
-    );
-    public static final List<String> FUNDO_PREVIDENCIA_AMAZONAS = List.of(
-            "Fundação Fundo Previdenciário do Estado do Amazonas"
-    );
-    public static final List<String> FUNDOS_PREVIDENCIA_SAO_PAULO = List.of(
-            "São Paulo Previdência - SPPREV",
-            "Encargos Gerais de Pessoal"
-    );
-    public static final List<String> FUNDO_PREVIDENCIA_PARAIBA = List.of(
-            "Paraíba Previdência - PBPREV"
-    );
-    public static final String DIVIDA_PUBLICA = "Juros da Dívida";
-    public static final String ADMIN_GERAL_ESTADO = "Administração Geral do Estado";
-    public static final String INFRAESTRUTURA = "Infraestrutura";
-    public static final List<String> SECRETARIA_TRANSPORTE = List.of("Secretaria dos Transportes Metropolitanos");
-    public static final String TRANSPORTE = "Transporte";
-    public static final List<String> SECRETARIAS_SEGURANCA = List.of(
-            "Secretaria da Segurança Pública",
-            "Secretaria de Sistemas Penal e Socioeducativo",
-            "Secretaria de Administração Penitenciária e Ressocialização",
-            "Secretaria de Estado da Segurança Pública",
-            "Secretaria de Estado de Administração Penitenciária",
-            "Secretaria de Estado da Segurança e da Defesa Social",
-            "Secretaria de Estado da Administração Penitenciária"
-    );
-    public static final List<String> DETRAN = List.of("Departamento Estadual de Trânsito");
-    public static final List<String> SECRETARIAS_INFRAESTRUTURA = List.of(
-            "Secretaria de Infraestrutura",
-            "Secretaria de Desenvolvimento Urbano",
-            "Secretaria de Infraestrutura Hídrica e Saneamento",
-            "Secretaria de Estado da Infraestrutura e dos Recursos Hídricos"
-    );
 }

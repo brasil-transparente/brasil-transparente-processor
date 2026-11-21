@@ -4,6 +4,7 @@ import com.brasil.transparente.processor.entity.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import java.util.List;
 import java.util.Objects;
 
 @RequiredArgsConstructor
@@ -77,9 +78,9 @@ public class CreateEntityService {
         return elementoDespesa;
     }
 
-    public void setRelationships(UnidadeFederativa unidadeFederativa) {
-        log.info("{} - Criando relacionamentos entre as entidades", unidadeFederativa.getNameUnidadeFederativa());
-        for (Poder poder : unidadeFederativa.getListPoder()) {
+    public void setRelationships(List<Poder> poderList) {
+        log.info("Criando relacionamentos entre as entidades");
+        for (Poder poder : poderList) {
             for (Ministerio ministerio : poder.getListMinisterio()) {
                 for (Orgao orgao : ministerio.getListOrgao()) {
                     for (UnidadeGestora unidadeGestora : orgao.getListUnidadeGestora()) {
@@ -92,7 +93,6 @@ public class CreateEntityService {
                 }
                 ministerio.setPoder(poder);
             }
-            poder.setUnidadeFederativa(unidadeFederativa);
         }
     }
 

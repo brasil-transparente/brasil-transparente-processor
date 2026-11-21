@@ -18,13 +18,11 @@ public class DespesaSimplificada {
     private String name;
     private double totalValue;
     private double percentageOfTotal;
-    private Long unidadeFederativaId;
 
-    public DespesaSimplificada(String name, double totalValue, double percentageOfTotal, Long unidadeFederativaId) {
+    public DespesaSimplificada(String name, double totalValue, double percentageOfTotal) {
         this.name = name;
         this.totalValue = totalValue;
         this.percentageOfTotal = percentageOfTotal;
-        this.unidadeFederativaId = unidadeFederativaId;
     }
 
 }
