@@ -29,7 +29,7 @@ public class ExecutivoGeneratorService extends ExpenseGenerator {
     }
 
     @Override
-    protected void processLine(List<Poder> poderList, List<String> refinedLine) {
+    protected void processLine(Poder poder, List<String> refinedLine) {
         String nameMinisterio = refinedLine.get(2);
         String nameOrgao = refinedLine.get(4);
         String nameUnidadeGestora = refinedLine.get(6);
@@ -58,7 +58,7 @@ public class ExecutivoGeneratorService extends ExpenseGenerator {
             nameUnidadeGestora = nameCorrectorService.mergeEmbassyNames(nameUnidadeGestora);
         }
 
-        createEntitiesAndUpdateValues(poderList.getFirst(), nameMinisterio, nameOrgao, nameUnidadeGestora, nameElementoDespesa, valorPagoFinal);
+        createEntitiesAndUpdateValues(poder, nameMinisterio, nameOrgao, nameUnidadeGestora, nameElementoDespesa, valorPagoFinal);
     }
 
 }

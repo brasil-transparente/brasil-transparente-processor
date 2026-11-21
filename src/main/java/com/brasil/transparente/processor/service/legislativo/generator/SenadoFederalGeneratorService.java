@@ -22,9 +22,9 @@ public class SenadoFederalGeneratorService extends ExpenseGenerator {
     }
 
     @Override
-    protected void processLine(List<Poder> poderList, List<String> refinedLine) {
-        String elementoDespesa = refinedLine.get(2); // 2024 = 0
-        String valorPagoString = refinedLine.get(0); // 2024 = 1
+    protected void processLine(Poder poder, List<String> refinedLine) {
+        String elementoDespesa = refinedLine.get(2);
+        String valorPagoString = refinedLine.get(0);
         String valorRestosPagarString = refinedLine.get(1);
         valorPagoString = valorPagoString.replace(",", "");
         valorRestosPagarString = valorRestosPagarString.replace(",", "");
@@ -36,7 +36,7 @@ public class SenadoFederalGeneratorService extends ExpenseGenerator {
             return;
         }
 
-        createEntitiesAndUpdateValues(poderList.getFirst(), SENADO_FEDERAL, SENADO_FEDERAL, SENADO_FEDERAL, elementoDespesa, valorPagoFinal);
+        createEntitiesAndUpdateValues(poder, SENADO_FEDERAL, SENADO_FEDERAL, SENADO_FEDERAL, elementoDespesa, valorPagoFinal);
     }
 
 }

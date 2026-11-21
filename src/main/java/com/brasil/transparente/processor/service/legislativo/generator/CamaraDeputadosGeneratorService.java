@@ -22,7 +22,7 @@ public class CamaraDeputadosGeneratorService extends ExpenseGenerator {
     }
 
     @Override
-    protected void processLine(List<Poder> poderList, List<String> refinedLine) {
+    protected void processLine(Poder poder, List<String> refinedLine) {
         String elementoDespesa = refinedLine.get(0);
         String valorString = refinedLine.get(1);
         valorString = valorString.replace(",", "");
@@ -32,7 +32,7 @@ public class CamaraDeputadosGeneratorService extends ExpenseGenerator {
             return;
         }
 
-        createEntitiesAndUpdateValues(poderList.getFirst(), CAMARA_DEPUTADOS, CAMARA_DEPUTADOS, CAMARA_DEPUTADOS, elementoDespesa, valorPagoFinal);
+        createEntitiesAndUpdateValues(poder, CAMARA_DEPUTADOS, CAMARA_DEPUTADOS, CAMARA_DEPUTADOS, elementoDespesa, valorPagoFinal);
     }
 
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ElementoDespesaRepository extends JpaRepository<ElementoDespesa, String> {
+public interface ElementoDespesaRepository extends JpaRepository<ElementoDespesa, Long> {
 
     @Query("SELECT ed.totalValueSpent FROM ElementoDespesa ed JOIN ed.unidadeGestora ug JOIN ug.orgao org JOIN org.ministerio mini WHERE ed.nameElementoDespesa = :nameElementoDespesa AND mini.nameMinisterio = :nameMinisterio")
     double findByNameElementoDespesaAndMinisterio(@Param("nameElementoDespesa") String nameElementoDespesa, @Param("nameMinisterio") String nameMinisterio);

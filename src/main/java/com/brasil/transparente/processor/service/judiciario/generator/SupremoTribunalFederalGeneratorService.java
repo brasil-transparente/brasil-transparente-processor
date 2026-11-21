@@ -24,7 +24,7 @@ public class SupremoTribunalFederalGeneratorService extends ExpenseGenerator {
     private static final String SUPREMO_TRIBUNAL_FEDERAL = "Supremo Tribunal Federal";
 
     @Override
-    protected void processLine(List<Poder> poderList, List<String> refinedLine) {
+    protected void processLine(Poder poder, List<String> refinedLine) {
         String planoOrcamentario = refinedLine.get(4);
         String valorString = refinedLine.get(7);
         double valorPagoFinal = CurrencyNormalizer.normalizeCurrencyValue(valorString);
@@ -33,7 +33,7 @@ public class SupremoTribunalFederalGeneratorService extends ExpenseGenerator {
             return;
         }
 
-        createEntitiesAndUpdateValues(poderList.getFirst(), SUPREMO_TRIBUNAL_FEDERAL, SUPREMO_TRIBUNAL_FEDERAL, SUPREMO_TRIBUNAL_FEDERAL, planoOrcamentario, valorPagoFinal);
+        createEntitiesAndUpdateValues(poder, SUPREMO_TRIBUNAL_FEDERAL, SUPREMO_TRIBUNAL_FEDERAL, SUPREMO_TRIBUNAL_FEDERAL, planoOrcamentario, valorPagoFinal);
     }
 
 }

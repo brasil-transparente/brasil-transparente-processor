@@ -1,6 +1,5 @@
 package com.brasil.transparente.processor.util;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,5 +91,11 @@ class CalculationServiceTest {
     void testGetPercentageOfTotal_bothNegative_returnsPositivePercentage() {
         double result = calculationService.getPercentageOfTotal(-50.0, -100.0);
         assertEquals(50.0, result, 0.001);
+    }
+
+    @Test
+    void testGetPercentageOfTotal_zeroTotalExpense_returnsZero() {
+        double result = calculationService.getPercentageOfTotal(50.0, 0.0);
+        assertEquals(0.0, result, 0.001);
     }
 }

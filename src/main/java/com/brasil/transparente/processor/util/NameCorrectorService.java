@@ -14,20 +14,19 @@ import java.util.Map;
 public class NameCorrectorService {
 
     private final NameCorrectorLoader nameCorrectorLoader;
-    private Map<String, String> correctionHashMap;
 
     public void refactorNames(List<Poder> poderList) {
         log.info("Refatorando nomes");
-        correctionHashMap = nameCorrectorLoader.getCorrectionsHashMap();
+        Map<String, String> corrections = nameCorrectorLoader.getCorrectionsHashMap();
         for (Poder poder : poderList) {
             for (Ministerio ministerio : poder.getListMinisterio()) {
-                correctMinisterioNames(ministerio);
+                ministerio.setNameMinisterio(correctName(ministerio.getNameMinisterio(), corrections));
                 for (Orgao orgao : ministerio.getListOrgao()) {
-                    correctOrgaoNames(orgao);
+                    orgao.setNameOrgao(correctName(orgao.getNameOrgao(), corrections));
                     for (UnidadeGestora unidadeGestora : orgao.getListUnidadeGestora()) {
-                        correctUnidadeGestoraNames(unidadeGestora);
+                        unidadeGestora.setNameUnidadeGestora(correctName(unidadeGestora.getNameUnidadeGestora(), corrections));
                         for (ElementoDespesa elementoDespesa : unidadeGestora.getListElementoDespesa()) {
-                            correctElementDespesaNames(elementoDespesa);
+                            elementoDespesa.setNameElementoDespesa(correctName(elementoDespesa.getNameElementoDespesa(), corrections));
                         }
                     }
                 }
@@ -35,28 +34,8 @@ public class NameCorrectorService {
         }
     }
 
-    private void correctMinisterioNames(Ministerio ministerio) {
-        String original = ministerio.getNameMinisterio();
-        String corrected = correctionHashMap.getOrDefault(original, original);
-        ministerio.setNameMinisterio(corrected);
-    }
-
-    private void correctOrgaoNames(Orgao orgao) {
-        String original = orgao.getNameOrgao();
-        String corrected = correctionHashMap.getOrDefault(original, original);
-        orgao.setNameOrgao(corrected);
-    }
-
-    private void correctUnidadeGestoraNames(UnidadeGestora unidadeGestora) {
-        String original = unidadeGestora.getNameUnidadeGestora();
-        String corrected = correctionHashMap.getOrDefault(original, original);
-        unidadeGestora.setNameUnidadeGestora(corrected);
-    }
-
-    private void correctElementDespesaNames(ElementoDespesa elementoDespesa) {
-        String original = elementoDespesa.getNameElementoDespesa();
-        String corrected = correctionHashMap.getOrDefault(original, original);
-        elementoDespesa.setNameElementoDespesa(corrected);
+    private String correctName(String original, Map<String, String> corrections) {
+        return corrections.getOrDefault(original, original);
     }
 
     public String mergeEmbassyNames(String unidadeGestora) {
