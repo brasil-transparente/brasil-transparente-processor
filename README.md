@@ -6,7 +6,7 @@ Módulo responsável por processar os arquivos CSV de despesas da União (Podere
 
 ### Pré-requisitos
 - Java 21+
-- Docker e Docker Compose
+- Spring Boot
 - Git
 
 ---
