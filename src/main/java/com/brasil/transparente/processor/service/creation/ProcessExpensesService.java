@@ -1,6 +1,7 @@
 package com.brasil.transparente.processor.service.creation;
 
 import com.brasil.transparente.processor.entity.*;
+import com.brasil.transparente.processor.util.CalculationService;
 import com.brasil.transparente.processor.util.OrdererService;
 import com.brasil.transparente.processor.util.constants.Constants;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.List;
 public class ProcessExpensesService {
 
     private final OrdererService ordererService;
+    private final CalculationService calculationService;
 
     public double aggregateTotalExpense(List<Poder> poderList) {
         log.info("Calculando gasto total");
@@ -100,11 +102,7 @@ public class ProcessExpensesService {
     }
 
     private void setPercentage(UnidadeOrcamentaria unidade, double totalPai) {
-        double percentageOfTotal = calculatePercentage(unidade.getTotalValueSpent(), totalPai);
+        double percentageOfTotal = calculationService.getPercentageOfTotal(unidade.getTotalValueSpent(), totalPai);
         unidade.setPercentageOfTotal(percentageOfTotal);
-    }
-
-    private double calculatePercentage(double numerator, double denominator) {
-        return denominator == 0 ? 0 : (numerator * 100) / denominator;
     }
 }

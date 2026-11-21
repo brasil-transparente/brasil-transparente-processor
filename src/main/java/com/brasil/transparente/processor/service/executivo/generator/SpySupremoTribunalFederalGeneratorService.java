@@ -25,7 +25,7 @@ public class SpySupremoTribunalFederalGeneratorService extends ExpenseGenerator 
     }
 
     @Override
-    protected void processLine(List<Poder> poderList, List<String> refinedLine) {
+    protected void processLine(Poder poder, List<String> refinedLine) {
         String planoOrcamentario = refinedLine.get(4);
         String valorString = refinedLine.get(7);
         double valorPagoFinal = CurrencyNormalizer.normalizeCurrencyValue(valorString);
@@ -34,7 +34,7 @@ public class SpySupremoTribunalFederalGeneratorService extends ExpenseGenerator 
             return;
         }
 
-        createEntitiesAndUpdateValues(poderList.getFirst(), PRECATORIOS_RPVS, SUPREMO_TRIBUNAL_FEDERAL, SUPREMO_TRIBUNAL_FEDERAL, planoOrcamentario, valorPagoFinal);
+        createEntitiesAndUpdateValues(poder, PRECATORIOS_RPVS, SUPREMO_TRIBUNAL_FEDERAL, SUPREMO_TRIBUNAL_FEDERAL, planoOrcamentario, valorPagoFinal);
     }
 
 }

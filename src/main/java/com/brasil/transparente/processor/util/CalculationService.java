@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class CalculationService {
 
     public double getPercentageOfTotal(double specificExpense, double totalExpense) {
-        return (specificExpense / totalExpense) * 100;
+        return totalExpense == 0 ? 0.0 : (specificExpense * 100) / totalExpense;
     }
 
 }

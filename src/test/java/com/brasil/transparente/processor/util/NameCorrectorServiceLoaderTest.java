@@ -3,12 +3,10 @@ package com.brasil.transparente.processor.util;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -16,22 +14,19 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {NameCorrectorLoader.class})
+@ExtendWith(MockitoExtension.class)
 class NameCorrectorServiceLoaderTest {
 
-    @MockitoBean
+    @Mock
     private ResourceLoader resourceLoader;
-    @MockitoBean
+    @Mock
     private Resource resource;
-    @Autowired
+
     private NameCorrectorLoader nameCorrectorLoader;
 
     @BeforeEach
-    void setUp() throws NoSuchFieldException, IllegalAccessException {
-        var resourceLoaderField = NameCorrectorLoader.class.getDeclaredField("resourceLoader");
-        resourceLoaderField.setAccessible(true);
-        resourceLoaderField.set(nameCorrectorLoader, resourceLoader);
+    void setUp() {
+        nameCorrectorLoader = new NameCorrectorLoader(resourceLoader);
     }
 
     @Test

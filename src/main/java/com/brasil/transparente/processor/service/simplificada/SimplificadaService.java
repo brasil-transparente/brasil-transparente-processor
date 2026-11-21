@@ -13,16 +13,16 @@ public class SimplificadaService {
 
     public void generateSimplifiedReportUniao(double totalExpenses) {
         log.info("Gerando estrutura simplificada - União");
-        uniaoService.calculateAndSaveUniao1(totalExpenses);
-        uniaoService.calculateAndSaveUniao2(totalExpenses);
-        uniaoService.calculateAndSaveUniao3(totalExpenses);
-        uniaoService.calculateAndSaveUniao4(totalExpenses);
-        uniaoService.calculateAndSaveUniao5(totalExpenses);
-        uniaoService.calculateAndSaveUniao6(totalExpenses);
-        uniaoService.calculateAndSaveUniao7(totalExpenses);
-        uniaoService.calculateAndSaveUniao8(totalExpenses);
-        uniaoService.calculateAndSaveUniao9(totalExpenses);
-        uniaoService.calculateAndSaveUniaoOutros(totalExpenses);
+        uniaoService.calculateAndSaveAposentadoriasEPensoes(totalExpenses);
+        uniaoService.calculateAndSaveJurosDividaPublica(totalExpenses);
+        uniaoService.calculateAndSaveSaude(totalExpenses);
+        uniaoService.calculateAndSaveTransferenciaRenda(totalExpenses);
+        uniaoService.calculateAndSaveEducacao(totalExpenses);
+        uniaoService.calculateAndSavePrecatoriosERpvs(totalExpenses);
+        uniaoService.calculateAndSaveDefesa(totalExpenses);
+        uniaoService.calculateAndSaveSeguroDesempregoEAbono(totalExpenses);
+        uniaoService.calculateAndSavePoderJudiciarioFederal(totalExpenses);
+        uniaoService.calculateAndSaveOutros(totalExpenses);
     }
 
 }

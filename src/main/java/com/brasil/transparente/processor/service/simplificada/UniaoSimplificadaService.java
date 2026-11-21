@@ -16,25 +16,25 @@ public class UniaoSimplificadaService {
     private final ElementoDespesaRepository elementoDespesaRepository;
     private final DespesaSimplificadaRepository despesaSimplificadaRepository;
 
-    public void calculateAndSaveUniao1(double totalExpense) {
+    public void calculateAndSaveAposentadoriasEPensoes(double totalExpense) {
         save(DespesaSimplificadaConstants.APOSENTADORIAS_PENSOES,
                 elementoDespesaRepository.findByElementoDespesaNameListOrNameOrgao(
                         DespesaSimplificadaConstants.DESPESAS_APOSENTADORIAS, DespesaSimplificadaConstants.FRGPS), totalExpense);
     }
 
-    public void calculateAndSaveUniao2(double totalExpense) {
+    public void calculateAndSaveJurosDividaPublica(double totalExpense) {
         save(DespesaSimplificadaConstants.JUROS_DIVIDA_PUBLICA,
                 elementoDespesaRepository.findByMinisterioAndElementoDespesaNameList(
                         DespesaSimplificadaConstants.MINISTERIO_FAZENDA, DespesaSimplificadaConstants.DESPESAS_DIVIDA_PUBLICA), totalExpense);
     }
 
-    public void calculateAndSaveUniao3(double totalExpense) {
+    public void calculateAndSaveSaude(double totalExpense) {
         save(DespesaSimplificadaConstants.SAUDE,
                 elementoDespesaRepository.findByMinisterioAndNotInElementoDespesaNameList(
                         DespesaSimplificadaConstants.MINISTERIO_SAUDE, DespesaSimplificadaConstants.DESPESAS_APOSENTADORIAS), totalExpense);
     }
 
-    public void calculateAndSaveUniao4(double totalExpense) {
+    public void calculateAndSaveTransferenciaRenda(double totalExpense) {
         save(DespesaSimplificadaConstants.TRANSFERENCIA_RENDA,
                 elementoDespesaRepository.findByMinisterioAndNotInElementoDespesaNameListAndInElementoDespesaNameList(
                         DespesaSimplificadaConstants.MINISTERIO_ASSISTENCIA_SOCIAL,
@@ -42,37 +42,37 @@ public class UniaoSimplificadaService {
                         DespesaSimplificadaConstants.AUXILIOS), totalExpense);
     }
 
-    public void calculateAndSaveUniao5(double totalExpense) {
+    public void calculateAndSaveEducacao(double totalExpense) {
         save(DespesaSimplificadaConstants.EDUCACAO,
                 elementoDespesaRepository.findByMinisterioAndNotInElementoDespesaNameList(
                         DespesaSimplificadaConstants.MINISTERIO_EDUCACAO, DespesaSimplificadaConstants.DESPESAS_APOSENTADORIAS), totalExpense);
     }
 
-    public void calculateAndSaveUniao6(double totalExpense) {
+    public void calculateAndSavePrecatoriosERpvs(double totalExpense) {
         save(DespesaSimplificadaConstants.PRECATORIOS_RPVS,
                 elementoDespesaRepository.findByMinisterio(DespesaSimplificadaConstants.PRECATORIOS_RPVS), totalExpense);
     }
 
-    public void calculateAndSaveUniao7(double totalExpense) {
+    public void calculateAndSaveDefesa(double totalExpense) {
         save(DespesaSimplificadaConstants.DEFESA,
                 elementoDespesaRepository.findByMinisterioAndNotInElementoDespesaNameList(
                         DespesaSimplificadaConstants.MINISTERIO_DEFESA, DespesaSimplificadaConstants.DESPESAS_APOSENTADORIAS), totalExpense);
     }
 
-    public void calculateAndSaveUniao8(double totalExpense) {
+    public void calculateAndSaveSeguroDesempregoEAbono(double totalExpense) {
         save(DespesaSimplificadaConstants.SEGURO_DESEMPREGO_ABONO_SALARIAL,
                 elementoDespesaRepository.findByNameElementoDespesaAndMinisterio(
                         DespesaSimplificadaConstants.SEGURO_DESEMPREGO_ABONO_SALARIAL,
                         DespesaSimplificadaConstants.MINISTERIO_TRABALHO_EMPREGO), totalExpense);
     }
 
-    public void calculateAndSaveUniao9(double totalExpense) {
+    public void calculateAndSavePoderJudiciarioFederal(double totalExpense) {
         save(DespesaSimplificadaConstants.PODER_JUDICIARIO_FEDERAL,
                 elementoDespesaRepository.findByPoderAndNotInElementoDespesaNameList(
                         DespesaSimplificadaConstants.PODER_JUDICIARIO, DespesaSimplificadaConstants.DESPESAS_APOSENTADORIAS), totalExpense);
     }
 
-    public void calculateAndSaveUniaoOutros(double totalExpense) {
+    public void calculateAndSaveOutros(double totalExpense) {
         save(DespesaSimplificadaConstants.OUTROS, totalExpense - despesaSimplificadaRepository.sumTotalValue(), totalExpense);
     }
 

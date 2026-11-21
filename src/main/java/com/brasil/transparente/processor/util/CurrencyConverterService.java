@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class CurrencyConverterService {
 
-    private static String ENDING_USD = "- USD";
-    private static String ENDING_MOEDA_LOCAL = "- MOEDA LOCAL";
-    private static String ENDING_ARS = "- ARS";
-    private static String ENDING_EURO = "- EURO";
+    private static final String ENDING_USD = "- USD";
+    private static final String ENDING_MOEDA_LOCAL = "- MOEDA LOCAL";
+    private static final String ENDING_ARS = "- ARS";
+    private static final String ENDING_EURO = "- EURO";
 
     public double convertCurrency(String unidadeGestora, double valorPago) {
         if (unidadeGestora.contains(ENDING_USD)) {

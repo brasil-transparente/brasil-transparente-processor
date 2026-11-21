@@ -14,13 +14,13 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class NameCorrectorLoader {
 
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     private final ResourceLoader resourceLoader;
 
     public Map<String, String> getCorrectionsHashMap() {
         try {
-            var mapper = new ObjectMapper();
             var resource = resourceLoader.getResource("classpath:name-correction.json");
-            return mapper.readValue(
+            return OBJECT_MAPPER.readValue(
                     resource.getContentAsByteArray(),
                     new TypeReference<>() {}
             );
