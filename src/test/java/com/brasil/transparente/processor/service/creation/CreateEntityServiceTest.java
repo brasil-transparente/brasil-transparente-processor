@@ -117,7 +117,6 @@ class CreateEntityServiceTest {
 
     @Test
     void setRelationships_shouldSetBidirectionalRelationsCorrectly() {
-        UnidadeFederativa mockUf = mock(UnidadeFederativa.class);
         Poder mockPoder = mock(Poder.class);
         Ministerio mockMinisterio = mock(Ministerio.class);
         Orgao mockOrgao = mock(Orgao.class);
@@ -128,15 +127,10 @@ class CreateEntityServiceTest {
         when(mockOrgao.getListUnidadeGestora()).thenReturn(List.of(mockUg));
         when(mockMinisterio.getListOrgao()).thenReturn(List.of(mockOrgao));
         when(mockPoder.getListMinisterio()).thenReturn(List.of(mockMinisterio));
-        when(mockUf.getListPoder()).thenReturn(List.of(mockPoder));
+        createEntityService.setRelationships(List.of(mockPoder));
 
-        createEntityService.setRelationships(mockUf);
+        assertEquals(mockMinisterio, mockPoder.getListMinisterio().getFirst());
 
-        assertEquals(mockPoder, mockUf.getListPoder().getFirst());
-        assertEquals(mockMinisterio, mockUf.getListPoder().getFirst().getListMinisterio().getFirst());
-        assertEquals(mockMinisterio, mockUf.getListPoder().getFirst().getListMinisterio().getFirst());
-
-        verify(mockPoder).setUnidadeFederativa(mockUf);
         verify(mockMinisterio).setPoder(mockPoder);
         verify(mockOrgao).setMinisterio(mockMinisterio);
         verify(mockUg).setOrgao(mockOrgao);

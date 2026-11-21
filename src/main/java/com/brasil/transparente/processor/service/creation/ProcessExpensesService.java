@@ -17,13 +17,12 @@ public class ProcessExpensesService {
 
     private final OrdererService ordererService;
 
-    public double aggregateTotalExpense(UnidadeFederativa unidadeFederativa) {
+    public double aggregateTotalExpense(List<Poder> poderList) {
         log.info("Calculando gasto total");
         double gastoTotalValue = 0;
-        for (Poder poder : unidadeFederativa.getListPoder()) {
+        for (Poder poder : poderList) {
             gastoTotalValue += poder.getTotalValueSpent();
         }
-        unidadeFederativa.setTotalValueSpent(gastoTotalValue);
         return gastoTotalValue;
     }
 
